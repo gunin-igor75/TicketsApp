@@ -21,3 +21,15 @@ dependencyResolutionManagement {
 
 rootProject.name = "TicketsApp"
 include(":app")
+include(":feature:home:data")
+include(":feature:home:domain")
+include(":feature:home:presentation")
+include(":feature:hotel")
+include(":feature:profile")
+include(":feature:shortcut")
+include(":feature:subscribe")
+include(":core:common")
+include(":core:network")
+include(":core:local")
+include(":feature:home:di")
+include(":briddge_di_module")
