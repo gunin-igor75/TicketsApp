@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.feature.home.presentation"
+    namespace = "com.github.gunin_igor75.presentation"
     compileSdk = 34
 
     defaultConfig {
@@ -38,7 +38,7 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
 
-    //domain module
+    //module
     implementation(project(":feature:home:domain"))
 
     testImplementation(libs.junit)

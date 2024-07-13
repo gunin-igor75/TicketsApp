@@ -42,6 +42,23 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+
+    //koin
+    implementation(libs.koin.android)
+
+    //module
+    implementation(project(":bridge_di_module"))
+    implementation(project(":core:local"))
+    implementation(project(":core:network"))
+    implementation(project(":core:common"))
+    implementation(project(":feature:home:data"))
+    implementation(project(":feature:home:domain"))
+    implementation(project(":feature:home:presentation"))
+    implementation(project(":feature:hotel"))
+    implementation(project(":feature:profile"))
+    implementation(project(":feature:shortcut"))
+    implementation(project(":feature:subscribe"))
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

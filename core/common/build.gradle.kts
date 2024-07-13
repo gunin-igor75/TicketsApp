@@ -37,6 +37,15 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+
+    //okhttp
+    implementation(libs.okhttp.core)
+    implementation(libs.okhttp.logging)
+
+    //retrofit
+    implementation(libs.retrofit.core)
+    implementation(libs.retrofit.gsonConverter)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
