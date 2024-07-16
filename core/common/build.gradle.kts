@@ -46,6 +46,10 @@ dependencies {
     implementation(libs.retrofit.core)
     implementation(libs.retrofit.gsonConverter)
 
+    //adapterDelegates
+    implementation(libs.adapter.delegates.core)
+    implementation(libs.adapter.delegates.viewbinding)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

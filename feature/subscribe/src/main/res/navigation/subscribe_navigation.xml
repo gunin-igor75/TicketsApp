@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/subscribe_navigation"
+    app:startDestination="@id/subscribeFragment">
+
+    <fragment
+        android:id="@+id/subscribeFragment"
+        android:name="com.github.gunin_igor75.subscribe.SubscribeFragment"
+        tools:layout="@layout/fragment_subscribe" />
+
+</navigation>

@@ -30,6 +30,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -40,6 +44,21 @@ dependencies {
 
     //module
     implementation(project(":feature:home:domain"))
+    implementation(project(":core:common"))
+
+    //lifecycle
+    implementation(libs.androidx.lifecycle.core)
+    implementation(libs.androidx.lifecycle.viewmodel)
+
+    //navigation
+    implementation(libs.androidx.navigation.fragment.ktx)
+
+    //adapterDelegates
+    implementation(libs.adapter.delegates.core)
+    implementation(libs.adapter.delegates.viewbinding)
+
+    //koin
+    implementation(libs.koin.android)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -12,7 +12,7 @@ class TicketsRepositoryImpl(
     private val networkSource: NetworkSource,
 ) : TicketsRepository<List<Ticket>>, BaseService() {
 
-    override suspend fun getTickets(route: FlightRoute): DataResult<List<Ticket>> =
+    override suspend fun getTickets(): DataResult<List<Ticket>> =
         wrapFetchResult {
             val response = networkSource.fetchTickets()
             val result = response.tickets.toTickets()

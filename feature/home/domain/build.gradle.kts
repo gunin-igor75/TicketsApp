@@ -38,12 +38,6 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
 
-    //retrofit
-    implementation(libs.retrofit.core)
-
-    implementation(project(":feature:home:domain"))
-    implementation(project(":core:local"))
-    implementation(project(":core:network"))
     implementation(project(":core:common"))
 
     testImplementation(libs.junit)

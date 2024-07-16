@@ -38,10 +38,16 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
 
+    //koin
+    implementation(libs.koin.android)
+
     //module
     implementation(project(":feature:home:data"))
     implementation(project(":feature:home:domain"))
     implementation(project(":feature:home:presentation"))
+    implementation(project(":core:common"))
+    implementation(project(":core:local"))
+    implementation(project(":core:network"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -16,19 +16,19 @@ class FakeNetworkSource(
 ) : NetworkSource {
 
     override suspend fun fetchOffers(): OffersContainer {
-        delay(500L)
+        delay(5000L)
         val json = readJsonFromAssets(MOCK_OFFERS)
         return Gson().fromJson(json, OffersContainer::class.java)
     }
 
     override suspend fun fetchRecommendationTickets(): TicketsOffersContainer {
-        delay(500L)
+        delay(1000L)
         val json = readJsonFromAssets(MOCK_TICKETS_OFFERS)
         return Gson().fromJson(json, TicketsOffersContainer::class.java)
     }
 
     override suspend fun fetchTickets(): TicketsContainer {
-        delay(500L)
+        delay(1000L)
         val json = readJsonFromAssets(MOCK_TICKETS)
         return Gson().fromJson(json, TicketsContainer::class.java)
     }
