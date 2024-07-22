@@ -16,7 +16,7 @@ class FakeNetworkSource(
 ) : NetworkSource {
 
     override suspend fun fetchOffers(): OffersContainer {
-        delay(5000L)
+        delay(1000L)
         val json = readJsonFromAssets(MOCK_OFFERS)
         return Gson().fromJson(json, OffersContainer::class.java)
     }

@@ -1,25 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/dp_2x"
-    android:background="@drawable/rounded_bg">
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/card_grey"
-        app:cardCornerRadius="@dimen/dp_2x"
-        app:cardElevation="@dimen/_10dp">
+    android:background="@color/card_grey"
+    app:cardCornerRadius="@dimen/dp_2x"
+    app:cardElevation="@dimen/_10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@color/inner_grey"
             android:orientation="horizontal"
-
             android:paddingStart="@dimen/dp_1x"
             android:paddingEnd="@dimen/dp_2x">
 
@@ -43,46 +36,47 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayoutCityFrom"
+                    style="@style/TextInputLayoutOffers"
                     android:layout_width="match_parent"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_height="wrap_content"
-                    app:boxStrokeColor="@color/transparent"
+                    app:endIconDrawable="@drawable/ic_close"
+                    app:endIconMode="clear_text"
+                    app:endIconTint="@color/icon_white"
                     >
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/textInputEditTextCityFrom"
-                        style="@style/TextInputEditTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:minHeight="@dimen/dp_6x"
+                        android:textColor="@color/white"
                         android:hint="@string/from_edit_text" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_1dp"
-                    android:layout_marginVertical="@dimen/dp_1x"
                     android:background="@color/grey_line" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayoutCityTo"
+                    style="@style/TextInputLayoutOffers"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:boxBackgroundColor="@color/transparent"
-                    >
+                    app:endIconDrawable="@drawable/ic_close"
+                    app:endIconMode="clear_text"
+                    app:endIconTint="@color/icon_white">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tetInputEditTextCityTo"
-                        style="@style/TextInputEditTextStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:minHeight="@dimen/dp_6x"
+                        android:textColor="@color/white"
                         android:hint="@string/to_edit_text" />
                 </com.google.android.material.textfield.TextInputLayout>
 
             </LinearLayout>
 
         </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-
-</FrameLayout>
+</androidx.cardview.widget.CardView>

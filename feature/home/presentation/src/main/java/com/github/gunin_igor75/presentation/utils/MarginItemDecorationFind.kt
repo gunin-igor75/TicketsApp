@@ -1,23 +1,23 @@
 package com.github.gunin_igor75.presentation.utils
 
 import android.graphics.Rect
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
-class MarginItemDecoration(
+class MarginItemDecorationFind(
     private val spaceSize: Int,
-): RecyclerView.ItemDecoration() {
+) : RecyclerView.ItemDecoration() {
     override fun getItemOffsets(
         outRect: Rect,
         view: View,
         parent: RecyclerView,
-        state: RecyclerView.State
+        state: RecyclerView.State,
     ) {
-        with(outRect){
-            val count =  parent.adapter?.itemCount?: 0
-            if (parent.getChildAdapterPosition(view) != count - 1) {
-                right = spaceSize
+        with(outRect) {
+            if (parent.getChildAdapterPosition(view) == 0) {
+                top = spaceSize
+            } else {
+                top = 2 * spaceSize
             }
         }
     }

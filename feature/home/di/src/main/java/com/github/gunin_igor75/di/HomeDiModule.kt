@@ -1,15 +1,18 @@
 package com.github.gunin_igor75.di
 
+import com.github.gunin_igor75.data.repository.FindCountryRepositoryImpl
 import com.github.gunin_igor75.data.repository.OffersRepositoryImpl
 import com.github.gunin_igor75.data.repository.TicketsOffersRepositoryImp
 import com.github.gunin_igor75.data.repository.TicketsRepositoryImpl
 import com.github.gunin_igor75.domain.model.Offer
 import com.github.gunin_igor75.domain.model.Ticket
 import com.github.gunin_igor75.domain.model.TicketsOffers
+import com.github.gunin_igor75.domain.repository.FindCountryRepository
 import com.github.gunin_igor75.domain.repository.OffersRepository
 import com.github.gunin_igor75.domain.repository.TicketOffersRepository
 import com.github.gunin_igor75.domain.repository.TicketsRepository
 import com.github.gunin_igor75.domain.usecase.GetOffers
+import com.github.gunin_igor75.domain.usecase.GetSCountryItems
 import com.github.gunin_igor75.domain.usecase.GetTickets
 import com.github.gunin_igor75.domain.usecase.GetTicketsOffers
 import com.github.gunin_igor75.domain.usecase.ReadCityState
@@ -32,6 +35,9 @@ internal val dataModule = module {
     single<TicketsRepository<List<Ticket>>> {
         TicketsRepositoryImpl(networkSource = get())
     }
+    single<FindCountryRepository> {
+        FindCountryRepositoryImpl()
+    }
 }
 
 internal val domainModule = module {
@@ -49,6 +55,9 @@ internal val domainModule = module {
     }
     factory<SaveCityState>{
         SaveCityState(repository = get())
+    }
+    factory<GetSCountryItems> {
+        GetSCountryItems(repository = get())
     }
 }
 

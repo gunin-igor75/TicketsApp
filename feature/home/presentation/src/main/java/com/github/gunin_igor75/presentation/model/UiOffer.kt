@@ -4,8 +4,8 @@ import com.core.common.model.ListItem
 
 data class UiOffer(
     override val id: Int,
-    val title: String = "",
-    val town: String = "",
-    val price: String = "",
-    val imageResId: Int = 0
+    val title: String,
+    val town: String,
+    val price: String,
+    val imageResId: Int
 ): ListItem

@@ -10,10 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import com.core.common.R
 import com.core.common.utils.KeyBoardFilter
 import com.github.gunin_igor75.presentation.databinding.FragmentOffersBinding
-import com.github.gunin_igor75.presentation.delegates.offersAdapterDelegate
-import com.github.gunin_igor75.presentation.delegates.offersLoadingAdapterDelegate
-import com.github.gunin_igor75.presentation.utils.MarginItemDecoration
-import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
+import com.github.gunin_igor75.presentation.adapter.OffersAdapter
+import com.github.gunin_igor75.presentation.utils.MarginItemDecorationOffers
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -28,10 +26,7 @@ class OffersFragment : Fragment() {
     private val filter = KeyBoardFilter()
 
     private val adapterOffers by lazy {
-        ListDelegationAdapter(
-            offersAdapterDelegate(),
-            offersLoadingAdapterDelegate()
-        )
+        OffersAdapter()
     }
 
 
@@ -54,7 +49,7 @@ class OffersFragment : Fragment() {
     private fun setupRecyclerView() {
         with(binding) {
             val divider = resources.getDimensionPixelSize(R.dimen.dp_8x)
-            val dividerItemDecoration = MarginItemDecoration(divider)
+            val dividerItemDecoration = MarginItemDecorationOffers(divider)
             recyclerView.addItemDecoration(dividerItemDecoration)
             recyclerView.adapter = adapterOffers
         }
@@ -63,9 +58,8 @@ class OffersFragment : Fragment() {
     private fun observeOffers() {
         lifecycleScope.launch {
             vm.offersState.flowWithLifecycle(viewLifecycleOwner.lifecycle).collect {
-                if (it.data != null) {
-                    adapterOffers.items = it.data
-                    adapterOffers.notifyDataSetChanged()
+                it.data?.let { list ->
+                    adapterOffers.items = list
                 }
             }
         }
@@ -75,6 +69,7 @@ class OffersFragment : Fragment() {
         lifecycleScope.launch {
             vm.cityStorage.flowWithLifecycle(viewLifecycleOwner.lifecycle).collect {
                 binding.inInputCity.textInputEditTextCityFrom.filters = arrayOf(filter)
+                binding.inInputCity.tetInputEditTextCityTo.filters = arrayOf(filter)
                 binding.inInputCity.textInputEditTextCityFrom.setText(it)
             }
         }

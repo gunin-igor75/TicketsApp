@@ -22,12 +22,20 @@
             android:lineSpacingMultiplier="1.2"
             android:text="@string/find_cheap_tickets" />
 
-        <include
-            android:id="@+id/inInputCity"
-            layout="@layout/block_home_input_city"
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_36dp" />
+            android:layout_marginTop="@dimen/_36dp"
+            android:background="@drawable/rounded_bg"
+            android:padding="@dimen/dp_2x">
+
+            <include
+                android:id="@+id/inInputCity"
+                layout="@layout/block_home_input_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </FrameLayout>
+
 
         <androidx.appcompat.widget.AppCompatTextView
             style="@style/sfProDisplayBold.22sp"
