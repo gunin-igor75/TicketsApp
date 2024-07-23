@@ -4,14 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.core.common.R
 import com.core.common.utils.KeyBoardFilter
-import com.github.gunin_igor75.presentation.databinding.FragmentOffersBinding
 import com.github.gunin_igor75.presentation.adapter.OffersAdapter
+import com.github.gunin_igor75.presentation.databinding.FragmentOffersBinding
 import com.github.gunin_igor75.presentation.utils.MarginItemDecorationOffers
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -41,9 +46,12 @@ class OffersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupEditTextCityFrom()
+        setupValueEditTextCityFrom()
+        setupValidationEditTextCityFrom()
         setupRecyclerView()
         observeOffers()
+        observeError()
+        launchScreenDestination()
     }
 
     private fun setupRecyclerView() {
@@ -65,7 +73,23 @@ class OffersFragment : Fragment() {
         }
     }
 
-    private fun setupEditTextCityFrom() {
+    private fun observeError() {
+        lifecycleScope.launch {
+            vm.error.flowWithLifecycle(viewLifecycleOwner.lifecycle).collect { isError ->
+                if (isError) {
+                    val snackBar =
+                        Snackbar.make(binding.root, R.string.error, Snackbar.LENGTH_SHORT)
+                    snackBar.setBackgroundTint(
+                        ContextCompat.getColor(requireContext(), R.color.grey)
+                    )
+                    snackBar.setTextColor(ContextCompat.getColor(requireContext(), R.color.main_bg))
+                    snackBar.show()
+                }
+            }
+        }
+    }
+
+    private fun setupValueEditTextCityFrom() {
         lifecycleScope.launch {
             vm.cityStorage.flowWithLifecycle(viewLifecycleOwner.lifecycle).collect {
                 binding.inInputCity.textInputEditTextCityFrom.filters = arrayOf(filter)
@@ -73,6 +97,42 @@ class OffersFragment : Fragment() {
                 binding.inInputCity.textInputEditTextCityFrom.setText(it)
             }
         }
+    }
+
+    private fun setupValidationEditTextCityFrom() {
+        binding.inInputCity.textInputEditTextCityFrom.addTextChangedListener {
+            val city = it.toString()
+            vm.validate(city)
+        }
+    }
+
+    private fun launchScreenDestination() {
+        lifecycleScope.launch {
+            vm.isValidateCity.flowWithLifecycle(viewLifecycleOwner.lifecycle)
+                .collectLatest { isValidate ->
+                    binding.inInputCity.imageView.isEnabled = isValidate
+                    binding.inInputCity.tetInputEditTextCityTo.isEnabled = isValidate
+                }
+        }
+        binding.inInputCity.imageView.setOnClickListener {
+            val city = binding.inInputCity.textInputEditTextCityFrom.text.toString()
+            navigateToScreenDestination(city)
+        }
+        binding.inInputCity.tetInputEditTextCityTo.setOnFocusChangeListener { view, hasFocus ->
+            if (hasFocus) {
+                val city = binding.inInputCity.textInputEditTextCityFrom.text.toString()
+                view.clearFocus()
+                navigateToScreenDestination(city)
+            }
+        }
+    }
+
+    private fun navigateToScreenDestination(city: String) {
+        findNavController().navigate(
+            OffersFragmentDirections.actionOffersFragmentToFindCountryFragment(
+                city
+            )
+        )
     }
 
     override fun onDestroy() {

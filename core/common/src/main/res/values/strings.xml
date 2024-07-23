@@ -50,4 +50,5 @@
     <string name="dash">/</string>
     <string name="no_transfers">Без пересадок</string>
     <string name="total_flight">%sч в пути</string>
+    <string name="error">Error loading data from server</string>
 </resources>

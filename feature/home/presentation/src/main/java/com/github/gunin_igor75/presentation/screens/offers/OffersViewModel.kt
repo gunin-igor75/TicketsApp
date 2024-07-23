@@ -31,8 +31,9 @@ class OffersViewModel(
     private val _error: Channel<Boolean> = Channel()
     val error: Flow<Boolean> = _error.receiveAsFlow()
 
-    private val _isValidateCity: MutableStateFlow<Boolean> = MutableStateFlow(false)
-    val isValidateCity: StateFlow<Boolean> = _isValidateCity.asStateFlow()
+    private val _isValidateCity: Channel<Boolean> = Channel()
+
+    val isValidateCity: Flow<Boolean> = _isValidateCity.receiveAsFlow()
 
     init {
         viewModelScope.launch {
@@ -61,5 +62,9 @@ class OffersViewModel(
         }
     }
 
-    fun isValidate(world: String) = world.isNotBlank()
+    fun validate(world: String) {
+        viewModelScope.launch {
+            _isValidateCity.send( world.isNotBlank())
+        }
+    }
 }
