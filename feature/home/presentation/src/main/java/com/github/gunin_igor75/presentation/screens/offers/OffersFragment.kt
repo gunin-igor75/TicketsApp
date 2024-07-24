@@ -26,7 +26,7 @@ class OffersFragment : Fragment() {
     private val binding
         get() = _binding ?: throw IllegalStateException("FragmentOffersBinding is null")
 
-    private val vm: OffersViewModel by viewModel()
+    private val vm: OffersTextEditViewModel by viewModel()
 
     private val filter = KeyBoardFilter()
 
@@ -51,6 +51,7 @@ class OffersFragment : Fragment() {
         setupRecyclerView()
         observeOffers()
         observeError()
+        setupIsEnabledView()
         launchScreenDestination()
     }
 
@@ -90,10 +91,10 @@ class OffersFragment : Fragment() {
     }
 
     private fun setupValueEditTextCityFrom() {
+        binding.inInputCity.textInputEditTextCityFrom.filters = arrayOf(filter)
+        binding.inInputCity.tetInputEditTextCityTo.filters = arrayOf(filter)
         lifecycleScope.launch {
             vm.cityStorage.flowWithLifecycle(viewLifecycleOwner.lifecycle).collect {
-                binding.inInputCity.textInputEditTextCityFrom.filters = arrayOf(filter)
-                binding.inInputCity.tetInputEditTextCityTo.filters = arrayOf(filter)
                 binding.inInputCity.textInputEditTextCityFrom.setText(it)
             }
         }
@@ -106,7 +107,7 @@ class OffersFragment : Fragment() {
         }
     }
 
-    private fun launchScreenDestination() {
+    private fun setupIsEnabledView() {
         lifecycleScope.launch {
             vm.isValidateCity.flowWithLifecycle(viewLifecycleOwner.lifecycle)
                 .collectLatest { isValidate ->
@@ -114,14 +115,19 @@ class OffersFragment : Fragment() {
                     binding.inInputCity.tetInputEditTextCityTo.isEnabled = isValidate
                 }
         }
+    }
+
+    private fun launchScreenDestination() {
         binding.inInputCity.imageView.setOnClickListener {
             val city = binding.inInputCity.textInputEditTextCityFrom.text.toString()
+            saveCityFrom(city)
             navigateToScreenDestination(city)
         }
         binding.inInputCity.tetInputEditTextCityTo.setOnFocusChangeListener { view, hasFocus ->
             if (hasFocus) {
                 val city = binding.inInputCity.textInputEditTextCityFrom.text.toString()
                 view.clearFocus()
+                saveCityFrom(city)
                 navigateToScreenDestination(city)
             }
         }
@@ -133,6 +139,9 @@ class OffersFragment : Fragment() {
                 city
             )
         )
+    }
+    private fun saveCityFrom(city: String) {
+        vm.saveCity(city)
     }
 
     override fun onDestroy() {

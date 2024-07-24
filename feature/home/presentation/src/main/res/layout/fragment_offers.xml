@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_36dp"
-            android:background="@drawable/rounded_bg"
+            android:background="@drawable/rounded_card"
             android:padding="@dimen/dp_2x">
 
             <include
@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dp_2x"
-            android:backgroundTint="@color/gray_2"
+            android:backgroundTint="@color/gray_surface"
             android:contentDescription="@string/show_all_places"
             android:text="@string/show_places"
             android:textAppearance="@style/sfProDisplaySemBoldItalic.16sp"
@@ -73,7 +73,7 @@
             android:layout_marginTop="@dimen/dp_4x"
             android:gravity="center"
             android:text="@string/first_time"
-            android:textColor="@color/text_gray" />
+            android:textColor="@color/gray_on_surface" />
 
     </LinearLayout>
 </ScrollView>

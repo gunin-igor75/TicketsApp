@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/card_grey"
+    android:backgroundTint="@color/inner_grey"
     app:cardCornerRadius="@dimen/dp_2x"
     app:cardElevation="@dimen/_10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/inner_grey"
             android:orientation="horizontal"
             android:paddingStart="@dimen/dp_1x"
             android:paddingEnd="@dimen/dp_2x">
@@ -24,7 +23,7 @@
                 android:contentDescription="@string/icon_find"
                 android:paddingEnd="@dimen/dp_2x"
                 android:src="@drawable/ic_find"
-                app:tint="@color/icon_black"
+                app:tint="@color/white_on_surface"
                 tools:ignore="RtlSymmetry" />
 
             <LinearLayout
@@ -36,21 +35,19 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayoutCityFrom"
-                    style="@style/TextInputLayoutOffers"
+                    style="@style/TextInputLayoutCustom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingVertical="0dp"
                     app:endIconDrawable="@drawable/ic_close"
                     app:endIconMode="clear_text"
-                    app:endIconTint="@color/icon_white"
+                    app:endIconTint="@color/white_on_surface"
                     >
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/textInputEditTextCityFrom"
+                        style="@style/TextEditStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:minHeight="@dimen/dp_6x"
-                        android:textColor="@color/white"
                         android:hint="@string/from_edit_text" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -61,19 +58,18 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputLayoutCityTo"
-                    style="@style/TextInputLayoutOffers"
+                    style="@style/TextInputLayoutCustom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:endIconDrawable="@drawable/ic_close"
                     app:endIconMode="clear_text"
-                    app:endIconTint="@color/icon_white">
+                    app:endIconTint="@color/white_on_surface">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tetInputEditTextCityTo"
+                        style="@style/TextEditStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:minHeight="@dimen/dp_6x"
-                        android:textColor="@color/white"
                         android:hint="@string/to_edit_text" />
                 </com.google.android.material.textfield.TextInputLayout>
 

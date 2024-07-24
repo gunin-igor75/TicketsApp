@@ -1,11 +1,13 @@
 package com.github.gunin_igor75.presentation.screens.offers
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.core.common.model.UiEvent
 import com.github.gunin_igor75.domain.usecase.GetOffers
+import com.github.gunin_igor75.domain.usecase.ReadCityState
+import com.github.gunin_igor75.domain.usecase.SaveCityState
 import com.github.gunin_igor75.presentation.mappers.toUiOffers
 import com.github.gunin_igor75.presentation.model.OffersStateHolder
+import com.github.gunin_igor75.presentation.screens.base.BaseTextEditViewModel
 import com.github.gunin_igor75.presentation.utils.listLoading
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
@@ -17,12 +19,13 @@ import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
-class OffersViewModel(
+class OffersTextEditViewModel(
     private val getOffers: GetOffers,
-) : ViewModel() {
+    private val saveCityState: SaveCityState,
+    readCityState: ReadCityState,
+) : BaseTextEditViewModel() {
 
-    private var _cityStorage: MutableStateFlow<String> = MutableStateFlow("")
-    val cityStorage: StateFlow<String> = _cityStorage.asStateFlow()
+    val cityStorage: Flow<String> = readCityState()
 
     private var _offersState: MutableStateFlow<OffersStateHolder> =
         MutableStateFlow(OffersStateHolder())
@@ -31,16 +34,17 @@ class OffersViewModel(
     private val _error: Channel<Boolean> = Channel()
     val error: Flow<Boolean> = _error.receiveAsFlow()
 
-    private val _isValidateCity: Channel<Boolean> = Channel()
-
-    val isValidateCity: Flow<Boolean> = _isValidateCity.receiveAsFlow()
 
     init {
-        viewModelScope.launch {
-            getUiOffersState()
-        }
+        getUiOffersState()
     }
 
+
+    fun saveCity(city: String) {
+        viewModelScope.launch {
+            saveCityState(city)
+        }
+    }
 
     private fun getUiOffersState() {
         viewModelScope.launch {
@@ -59,12 +63,6 @@ class OffersViewModel(
                     }
                 }
             }.launchIn(viewModelScope)
-        }
-    }
-
-    fun validate(world: String) {
-        viewModelScope.launch {
-            _isValidateCity.send( world.isNotBlank())
         }
     }
 }
