@@ -21,6 +21,30 @@
         <argument
             android:name="cityFrom"
             app:argType="string" />
+        <action
+            android:id="@+id/action_findCountryFragment_to_hardRouteFragment"
+            app:destination="@id/hardRouteFragment" />
+        <action
+            android:id="@+id/action_findCountryFragment_to_hotTicketsFragment"
+            app:destination="@id/hotTicketsFragment" />
+        <action
+            android:id="@+id/action_findCountryFragment_to_weekendFragment"
+            app:destination="@id/weekendFragment" />
     </dialog>
+    <fragment
+        android:id="@+id/hardRouteFragment"
+        android:name="com.github.gunin_igor75.presentation.screens.hardroute.HardRouteFragment"
+        android:label="fragment_hard_route"
+        tools:layout="@layout/fragment_hard_route" />
+    <fragment
+        android:id="@+id/hotTicketsFragment"
+        android:name="com.github.gunin_igor75.presentation.screens.hottickets.HotTicketsFragment"
+        android:label="fragment_hot_tickets"
+        tools:layout="@layout/fragment_hot_tickets" />
+    <fragment
+        android:id="@+id/weekendFragment"
+        android:name="com.github.gunin_igor75.presentation.screens.weekend.WeekendFragment"
+        android:label="fragment_weekend"
+        tools:layout="@layout/fragment_weekend" />
 
 </navigation>
