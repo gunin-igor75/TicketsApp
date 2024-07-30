@@ -6,7 +6,7 @@ import com.github.gunin_igor75.domain.usecase.GetOffers
 import com.github.gunin_igor75.domain.usecase.ReadCityState
 import com.github.gunin_igor75.domain.usecase.SaveCityState
 import com.github.gunin_igor75.presentation.mappers.toUiOffers
-import com.github.gunin_igor75.presentation.model.OffersStateHolder
+import com.github.gunin_igor75.presentation.model.HomeStateHolder
 import com.github.gunin_igor75.presentation.screens.base.BaseTextEditViewModel
 import com.github.gunin_igor75.presentation.utils.listLoading
 import kotlinx.coroutines.channels.Channel
@@ -27,9 +27,9 @@ class OffersTextEditViewModel(
 
     val cityStorage: Flow<String> = readCityState()
 
-    private var _offersState: MutableStateFlow<OffersStateHolder> =
-        MutableStateFlow(OffersStateHolder())
-    val offersState: StateFlow<OffersStateHolder> = _offersState.asStateFlow()
+    private var _offersState: MutableStateFlow<HomeStateHolder> =
+        MutableStateFlow(HomeStateHolder())
+    val offersState: StateFlow<HomeStateHolder> = _offersState.asStateFlow()
 
     private val _error: Channel<Boolean> = Channel()
     val error: Flow<Boolean> = _error.receiveAsFlow()
@@ -55,11 +55,11 @@ class OffersTextEditViewModel(
                     }
 
                     is UiEvent.Loading -> {
-                        _offersState.value = OffersStateHolder(data = listLoading)
+                        _offersState.value = HomeStateHolder(data = listLoading)
                     }
 
                     is UiEvent.Success -> {
-                        _offersState.value = OffersStateHolder(data = event.data?.toUiOffers())
+                        _offersState.value = HomeStateHolder(data = event.data?.toUiOffers())
                     }
                 }
             }.launchIn(viewModelScope)

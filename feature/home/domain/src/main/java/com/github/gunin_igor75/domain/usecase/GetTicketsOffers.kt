@@ -7,7 +7,7 @@ import com.github.gunin_igor75.domain.repository.TicketOffersRepository
 import kotlinx.coroutines.flow.flow
 
 class GetTicketsOffers(
-    private val repository: TicketOffersRepository<TicketsOffers>,
+    private val repository: TicketOffersRepository<List<TicketsOffers>>,
 ) {
     suspend operator fun invoke() = flow {
         emit(UiEvent.Loading())
