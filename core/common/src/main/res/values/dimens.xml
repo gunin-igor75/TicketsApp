@@ -25,4 +25,6 @@
     <dimen name="width_price_title_loading">110dp</dimen>
     <dimen name="width_find_item">40dp</dimen>
     <dimen name="height_find_item">40dp</dimen>
+    <dimen name="width_circle_recommendation_tickets">24dp</dimen>
+    <dimen name="height_circle_recommendation_tickets">24dp</dimen>
 </resources>

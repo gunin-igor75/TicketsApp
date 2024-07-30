@@ -30,6 +30,9 @@
         <action
             android:id="@+id/action_findCountryFragment_to_weekendFragment"
             app:destination="@id/weekendFragment" />
+        <action
+            android:id="@+id/action_findCountryFragment_to_countrySelectedFragment"
+            app:destination="@id/countrySelectedFragment" />
     </dialog>
     <fragment
         android:id="@+id/hardRouteFragment"
@@ -46,5 +49,17 @@
         android:name="com.github.gunin_igor75.presentation.screens.weekend.WeekendFragment"
         android:label="fragment_weekend"
         tools:layout="@layout/fragment_weekend" />
+    <fragment
+        android:id="@+id/countrySelectedFragment"
+        android:name="com.github.gunin_igor75.presentation.screens.countryselected.CountrySelectedFragment"
+        android:label="fragment_country_selected"
+        tools:layout="@layout/fragment_country_selected">
+        <argument
+            android:name="cityFrom"
+            app:argType="string" />
+        <argument
+            android:name="cityTo"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

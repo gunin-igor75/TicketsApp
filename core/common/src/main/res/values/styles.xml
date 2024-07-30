@@ -73,6 +73,14 @@
         <item name="cursorColor">@color/white</item>
     </style>
 
+    <style name="TextInputLayoutCountrySelected" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textColorHint">@color/gray_on_surface</item>
+        <item name="hintTextColor">@color/card_grey</item>
+        <item name="boxStrokeColor">@color/transparent</item>
+        <item name="boxBackgroundColor">@color/card_grey</item>
+        <item name="cursorColor">@color/white</item>
+    </style>
+
     <style name="TextEditStyle">
         <item name="android:inputType">textCapWords</item>
         <item name="minHeight">@dimen/dp_6x</item>
@@ -90,5 +98,12 @@
         <item name="android:textColorHint">@color/gray_1</item>
     </style>
 
+
+    <style name="ChoiceCountrySelected" parent="Widget.MaterialComponents.Chip.Action">
+        <item name="chipBackgroundColor">@color/card_grey</item>
+        <item name="fontFamily">@font/sf_pro_display_medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
 
 </resources>

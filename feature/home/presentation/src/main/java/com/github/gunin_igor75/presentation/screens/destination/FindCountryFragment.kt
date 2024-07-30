@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.annotation.StringRes
-import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.core.common.R
 import com.core.common.utils.KeyBoardFilter
@@ -54,8 +54,9 @@ class FindCountryFragment: BottomSheetDialogFragment() {
         setupValueEditTextCityFrom()
         setupTextInputCityFrom()
         setupRecyclerView()
-        setupValidationEditTextCityFrom()
         observeViewModel()
+        launchScreensHnt()
+        onClickStartIconCityTo()
     }
 
     private fun observeViewModel() {
@@ -72,7 +73,8 @@ class FindCountryFragment: BottomSheetDialogFragment() {
 
     private fun setupFullScreenBottomSheet() {
         val bottomSheet: FrameLayout =
-            dialog?.findViewById(com.google.android.material.R.id.design_bottom_sheet)!!
+            dialog?.findViewById(com.google.android.material.R.id.design_bottom_sheet)
+                ?: throw IllegalStateException("com.google.android.material.R.id.design_bottom_sheet not found")
         bottomSheet.layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
         val behavior = BottomSheetBehavior.from(bottomSheet)
         behavior.apply {
@@ -101,15 +103,40 @@ class FindCountryFragment: BottomSheetDialogFragment() {
         }
     }
 
-    private fun setupValidationEditTextCityFrom() {
-        binding.includeInputCity.textInputEditTextCityFrom.addTextChangedListener {
-            val city = it.toString()
-            vm.validate(city)
-        }
-    }
 
     private fun setupValueEditTextCityFrom() {
         binding.includeInputCity.textInputEditTextCityFrom.filters = arrayOf(filter)
         binding.includeInputCity.tetInputEditTextCityTo.filters = arrayOf(filter)
+    }
+
+    private fun launchScreensHnt() {
+        with(binding.includeHintFind) {
+            cardChoiceViewHardRoute.setListener {
+                findNavController().navigate(com.github.gunin_igor75.presentation.R.id.action_findCountryFragment_to_hardRouteFragment)
+            }
+            cardChoiceViewWeekend.setListener {
+                findNavController().navigate(com.github.gunin_igor75.presentation.R.id.action_findCountryFragment_to_weekendFragment)
+            }
+            cardChoiceViewHotTickets.setListener {
+                findNavController().navigate(com.github.gunin_igor75.presentation.R.id.action_findCountryFragment_to_hotTicketsFragment)
+            }
+            cardChoiceViewAnyWhere.setListener {
+                binding.includeInputCity.tetInputEditTextCityTo.setText(R.string.sochi)
+            }
+        }
+    }
+
+    private fun onClickStartIconCityTo() {
+        binding.includeInputCity.textInputLayoutCityTo.setStartIconOnClickListener {
+            val cityTo = binding.includeInputCity.tetInputEditTextCityTo.text.toString()
+            val isValidate = vm.validateCity(cityTo)
+            if (isValidate) {
+                val cityFrom = binding.includeInputCity.textInputEditTextCityFrom.text.toString()
+                findNavController().navigate(FindCountryFragmentDirections.actionFindCountryFragmentToCountrySelectedFragment(
+                    cityFrom = cityFrom,
+                    cityTo = cityTo
+                ))
+            }
+        }
     }
 }

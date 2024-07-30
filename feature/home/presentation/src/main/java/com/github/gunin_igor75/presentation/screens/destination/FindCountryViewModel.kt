@@ -1,5 +1,6 @@
 package com.github.gunin_igor75.presentation.screens.destination
 
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.gunin_igor75.domain.usecase.GetCountryItems
 import com.github.gunin_igor75.presentation.mappers.toCountryItems
@@ -10,7 +11,7 @@ import kotlinx.coroutines.flow.stateIn
 
 class FindCountryViewModel(
     private val getCountryItems: GetCountryItems,
-) : BaseTextEditViewModel() {
+) : ViewModel() {
 
     fun countryItems() = getCountryItems()
         .map { it.toCountryItems() }
@@ -19,4 +20,9 @@ class FindCountryViewModel(
             started = SharingStarted.Lazily,
             initialValue = listOf()
         )
+
+
+    fun validateCity(city: String): Boolean {
+        return city.isNotBlank()
+    }
 }

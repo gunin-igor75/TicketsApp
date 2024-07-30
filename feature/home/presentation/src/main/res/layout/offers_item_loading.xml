@@ -17,21 +17,21 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:contentDescription="@string/image_offers"
-            tools:src="@drawable/rounded_bg" />
+            tools:src="@drawable/rounded_bg_loading" />
     </androidx.cardview.widget.CardView>
 
     <View
         android:layout_width="@dimen/width_price_title_loading"
         android:layout_height="@dimen/_20dp"
         android:layout_marginTop="@dimen/_4dp"
-        android:background="@drawable/rounded_bg"
+        android:background="@drawable/rounded_bg_loading"
         android:gravity="center" />
 
     <View
         android:layout_width="@dimen/width_price_content_loading"
         android:layout_height="@dimen/_20dp"
         android:layout_marginTop="@dimen/_4dp"
-        android:background="@drawable/rounded_bg"
+        android:background="@drawable/rounded_bg_loading"
         android:gravity="center" />
 
     <LinearLayout
@@ -51,7 +51,7 @@
         <View
             android:layout_width="@dimen/width_price_ticket_loading"
             android:layout_height="@dimen/_20dp"
-            android:background="@drawable/rounded_bg"
+            android:background="@drawable/rounded_bg_loading"
             android:gravity="center" />
 
     </LinearLayout>

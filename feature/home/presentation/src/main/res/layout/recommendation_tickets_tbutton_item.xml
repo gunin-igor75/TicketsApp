@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/textViewButton"
+    style="@style/sfProDisplayBold"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:text="@string/direct_flights"
+    android:textColor="@color/blue"
+    android:textSize="16sp"
+    tools:background="@color/card_grey">
+
+</androidx.appcompat.widget.AppCompatTextView>

@@ -4,6 +4,7 @@ import com.core.common.base.BaseDiffUtilItemCallback
 import com.core.common.model.ListItem
 import com.github.gunin_igor75.presentation.model.UiCountryItem
 import com.github.gunin_igor75.presentation.model.UiOffer
+import com.github.gunin_igor75.presentation.model.UiTicketOffer
 
 object OffersDiffUtilItemCallback : BaseDiffUtilItemCallback() {
     override fun areContentsTheSame(oldItem: ListItem, newItem: ListItem): Boolean {
@@ -17,6 +18,15 @@ object OffersDiffUtilItemCallback : BaseDiffUtilItemCallback() {
 object CountryItemDiffUtilItemCallback : BaseDiffUtilItemCallback() {
     override fun areContentsTheSame(oldItem: ListItem, newItem: ListItem): Boolean {
         if (oldItem is UiCountryItem && newItem is UiCountryItem) {
+            return oldItem == newItem
+        }
+        return super.areContentsTheSame(oldItem, newItem)
+    }
+}
+
+object TicketOfferDiffUtilCallback: BaseDiffUtilItemCallback(){
+    override fun areContentsTheSame(oldItem: ListItem, newItem: ListItem): Boolean {
+        if (oldItem is UiTicketOffer && newItem is UiTicketOffer) {
             return oldItem == newItem
         }
         return super.areContentsTheSame(oldItem, newItem)
