@@ -6,7 +6,9 @@ import com.core.common.model.UiEvent
 import com.github.gunin_igor75.domain.usecase.GetTicketsOffers
 import com.github.gunin_igor75.presentation.mappers.toUiTicketsOffers
 import com.github.gunin_igor75.presentation.model.HomeStateHolder
+import com.github.gunin_igor75.presentation.utils.buttonItemList
 import com.github.gunin_igor75.presentation.utils.listLoading
+import com.github.gunin_igor75.presentation.utils.titleItemList
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -42,12 +44,15 @@ class CountrySelectedViewModel(
                     }
 
                     is UiEvent.Loading -> {
-                        HomeStateHolder(data = listLoading)
+
+                        _ticketsOffers.value = HomeStateHolder(data = titleItemList + listLoading + buttonItemList)
                     }
 
                     is UiEvent.Success -> {
+                        val list = event.data?.toUiTicketsOffers()
+                            ?: throw IllegalStateException("Success data is null")
                         _ticketsOffers.value =
-                            HomeStateHolder(data = event.data?.toUiTicketsOffers())
+                            HomeStateHolder(data = titleItemList + list + buttonItemList)
                     }
                 }
             }.launchIn(viewModelScope)

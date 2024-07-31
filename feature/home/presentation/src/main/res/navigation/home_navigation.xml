@@ -60,6 +60,22 @@
         <argument
             android:name="cityTo"
             app:argType="string" />
+        <action
+            android:id="@+id/action_countrySelectedFragment_to_ticketsFragment"
+            app:destination="@id/ticketsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/ticketsFragment"
+        android:name="com.github.gunin_igor75.presentation.screens.tickets.TicketsFragment"
+        android:label="fragment_tikets"
+        tools:layout="@layout/fragment_tikets" >
+        <argument
+            android:name="cityFrom"
+            app:argType="string" />
+        <argument
+            android:name="cityTo"
+            app:argType="string" />
+    </fragment>
+
 
 </navigation>

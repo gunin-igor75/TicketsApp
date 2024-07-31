@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:contentDescription="@string/image_offers"
-            tools:src="@drawable/rounded_bg_loading" />
+            android:src="@drawable/rounded_bg_loading" />
     </androidx.cardview.widget.CardView>
 
     <View

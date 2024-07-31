@@ -17,6 +17,7 @@ import com.github.gunin_igor75.domain.usecase.GetTickets
 import com.github.gunin_igor75.domain.usecase.GetTicketsOffers
 import com.github.gunin_igor75.domain.usecase.ReadCityState
 import com.github.gunin_igor75.domain.usecase.SaveCityState
+import com.github.gunin_igor75.presentation.screens.countryselected.CountrySelectedViewModel
 import com.github.gunin_igor75.presentation.screens.destination.FindCountryViewModel
 import com.github.gunin_igor75.presentation.screens.offers.OffersTextEditViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -72,6 +73,9 @@ internal val presentationModule = module {
     }
     viewModel<FindCountryViewModel> {
         FindCountryViewModel(getCountryItems = get())
+    }
+    viewModel<CountrySelectedViewModel>{
+        CountrySelectedViewModel(getTicketsOffers = get())
     }
 }
 

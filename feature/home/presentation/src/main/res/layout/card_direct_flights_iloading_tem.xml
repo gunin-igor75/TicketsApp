@@ -11,7 +11,7 @@
         android:layout_width="@dimen/width_circle_recommendation_tickets"
         android:layout_height="@dimen/height_circle_recommendation_tickets"
         android:contentDescription="@string/image_circle"
-        tools:src="@drawable/circle_red"
+        android:src="@drawable/circle_gray"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,47 +32,32 @@
         app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <View
             android:id="@+id/textViewAviaCompany"
-            style="@style/sfProDisplayMedium.14sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="@string/ural_air_line" />
+            android:layout_width="150dp"
+            android:layout_height="18dp"
+            android:background="@drawable/rounded_bg_loading" />
 
         <Space
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <View
             android:id="@+id/textViewPriceTicket"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColor="@color/blue"
-            tools:text="2 390 ₽" />
-
-        <ImageView
-            android:id="@+id/imageViewArrowCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:contentDescription="@string/image_circle"
-            android:src="@drawable/ic_arrow_right_count" />
+            android:layout_width="60dp"
+            android:layout_height="18dp"
+            android:background="@drawable/rounded_bg_loading" />
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <View
         android:id="@+id/textViewPeriodTimeFlight"
-        style="@style/sfProDisplayRegular.14sp"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
         android:layout_marginTop="@dimen/_4dp"
-        android:ellipsize="end"
-        android:singleLine="true"
+        android:background="@drawable/rounded_bg_loading"
         app:layout_constraintStart_toEndOf="@id/guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout"
-        tools:text="@string/period_time_flight" />
+        app:layout_constraintTop_toBottomOf="@id/linearLayout" />
 
     <View
         android:layout_width="match_parent"

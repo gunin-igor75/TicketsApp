@@ -10,6 +10,7 @@ import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 
 private const val PATTERN_DATE_TIME = "yyyy-MM-dd'T'HH:mm:ss"
@@ -90,13 +91,7 @@ fun getFormatNumber(value: Double): String {
     return DecimalFormat("0.0", decimalFormat).format(value)
 }
 
-fun main() {
-    val date = "2024-02-23T03:15:00"
-    val date1 = "2024-02-23T07:10:00"
-    val hour = getHourDestination(date, date1)
-    println(hour)
-    println(getHourAndMinute(date))
-}
+
 
 
 
