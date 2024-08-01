@@ -1,6 +1,7 @@
 package com.github.gunin_igor75.presentation.screens.countryselected
 
 import android.os.Bundle
+import android.text.SpannableString
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -18,10 +19,18 @@ import com.github.gunin_igor75.presentation.utils.MarginItemDecorationRecommenda
 import com.github.gunin_igor75.presentation.utils.getDateToday
 import com.github.gunin_igor75.presentation.utils.getWeek
 import com.github.gunin_igor75.presentation.utils.markWord
+import com.google.android.material.chip.Chip
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.CompositeDateValidator
+import com.google.android.material.datepicker.DateValidatorPointBackward
+import com.google.android.material.datepicker.DateValidatorPointForward
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.Date
+import kotlin.time.Duration.Companion.days
+import kotlin.time.DurationUnit
 
 
 class CountrySelectedFragment : Fragment() {
@@ -43,6 +52,8 @@ class CountrySelectedFragment : Fragment() {
         }
     }
 
+    private var dateSending: Long? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -57,7 +68,11 @@ class CountrySelectedFragment : Fragment() {
         setupRecyclerView()
         observeViewModel()
         observeError()
-        setupDateSending(getDateToday())
+        setupDateSending(
+            date = Date(),
+            view = binding.inChips.chipDateToday
+        )
+        setupListenerChips()
     }
 
     private fun setupTitleCityFromTo() {
@@ -105,13 +120,101 @@ class CountrySelectedFragment : Fragment() {
         }
     }
 
-    private fun setupDateSending(date: String) {
-        val phrase = getWeek(date)
+    private fun setupDateSending(
+        date: Date,
+        view: Chip,
+        changeIconVisible: Boolean = false,
+    ) {
+        val dateString = getDateToday(date)
+        val phrase = getWeek(dateString)
         val spannableString = markWord(
-            text = date,
+            text = dateString,
             phrase = phrase,
             colorResId = R.color.grey
         )
-        binding.inChips.chipDateToday.text = spannableString
+        view.text = spannableString
+        if (changeIconVisible) {
+            view.isChipIconVisible = false
+        }
+    }
+
+    private fun setupListenerChips() {
+        binding.inChips.chipDateToday.setOnClickListener {
+            launchDateDialogSending()
+        }
+        binding.inChips.chipBack.setOnClickListener {
+            launchDateDialogBack()
+        }
+    }
+
+    private fun launchDateDialogSending() {
+        val min = dateSending ?: Date().time
+        val max = min + PERIOD_TIME.days.toLong(DurationUnit.MILLISECONDS)
+        val constraints = getCalendarConstraints(min, max)
+        val datePicker = getDatePicker(constraints)
+
+        datePicker.addOnPositiveButtonClickListener { timeInMillis ->
+            dateSending = timeInMillis
+            val spannableString = getSpannableString(timeInMillis)
+            binding.inChips.chipDateToday.text = spannableString
+        }
+        datePicker.show(parentFragmentManager, TAG)
+    }
+
+    private fun launchDateDialogBack() {
+        val min =
+            (dateSending ?: Date().time) + START_DELTA_BACK.days.toLong(DurationUnit.MILLISECONDS)
+        val max = min + PERIOD_TIME.days.toLong(DurationUnit.MILLISECONDS)
+        val constraints = getCalendarConstraints(min, max)
+        val datePicker = getDatePicker(constraints)
+
+        datePicker.addOnPositiveButtonClickListener { timeInMillis ->
+            val spannableString = getSpannableString(timeInMillis)
+            with(binding.inChips.chipBack) {
+                text = spannableString
+                isChipIconVisible = false
+            }
+        }
+        datePicker.show(parentFragmentManager, TAG)
+    }
+
+    private fun getSpannableString(timeInMillis: Long): SpannableString {
+        val date = Date(timeInMillis)
+        val dateString = getDateToday(date)
+        val phrase = getWeek(dateString)
+        val spannableString = markWord(
+            text = dateString,
+            phrase = phrase,
+            colorResId = R.color.grey
+        )
+        return spannableString
+    }
+
+    private fun getDatePicker(constraints: CalendarConstraints): MaterialDatePicker<Long> {
+        val datePicker = MaterialDatePicker.Builder.datePicker()
+            .setTitleText(resources.getString(R.string.datePickerTitle))
+            .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+            .setCalendarConstraints(constraints)
+            .build()
+        return datePicker
+    }
+
+    private fun getCalendarConstraints(
+        min: Long,
+        max: Long,
+    ): CalendarConstraints {
+        val start = DateValidatorPointForward.from(min)
+        val end = DateValidatorPointBackward.before(max)
+        val dataValidator = CompositeDateValidator.allOf(listOf(start, end))
+        val constrains = CalendarConstraints.Builder()
+            .setValidator(dataValidator)
+            .build()
+        return constrains
+    }
+
+    private companion object {
+        const val TAG = "CountrySelectedFragment"
+        const val PERIOD_TIME = 45
+        const val START_DELTA_BACK = 3
     }
 }

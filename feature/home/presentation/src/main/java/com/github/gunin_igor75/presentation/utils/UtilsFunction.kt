@@ -8,16 +8,16 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 
 
 private const val PATTERN = "dd MMM EEE"
 
 
-fun getDateToday(): String {
-    val calendar = Calendar.getInstance()
+fun getDateToday(date: Date): String {
     val format = SimpleDateFormat(PATTERN, Locale.getDefault())
-    val result = format.format(calendar.time).replace('.', ',')
+    val result = format.format(date).replace('.', ',')
     return result
 }
 
@@ -45,7 +45,5 @@ fun Fragment.markWord(
 
 
 fun main() {
-    val str = getDateToday()
-    val data = str.split(" ")
-    println(data[data.size - 1])
+
 }
