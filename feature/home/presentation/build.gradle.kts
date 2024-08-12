@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.safeags)
+    alias(libs.plugins.parcelize)
 }
 
 android {
@@ -42,6 +43,7 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(libs.viewbinding.delegate.kirich)
 
     //module
     implementation(project(":feature:home:domain"))

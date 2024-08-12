@@ -23,12 +23,14 @@
             android:paddingEnd="@dimen/dp_2x">
 
             <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/icon_arrow_left"
                 android:src="@drawable/ic_arrow_left" />
 
             <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_1x"
@@ -94,7 +96,7 @@
             android:layout_marginTop="12dp" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btShowAllTickets"
+            android:id="@+id/buttonShowAllTickets"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="23dp"

@@ -1,4 +1,4 @@
-package com.core.local.dataprovides
+package com.core.local.preferencesprovides
 
 import android.content.Context
 import androidx.datastore.core.IOException
@@ -6,14 +6,14 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.emptyPreferences
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
-import com.core.local.LocalSource
+import com.core.local.LocalSourceProvider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 
-class SharedPreferencesSource(
+class SharedPreferencesSourceProvider(
     context: Context
-): LocalSource {
+): LocalSourceProvider {
 
     private val Context.datastore by preferencesDataStore(PREF_NAME)
 

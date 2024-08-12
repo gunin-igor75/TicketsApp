@@ -11,12 +11,12 @@ import com.github.gunin_igor75.domain.repository.FindCountryRepository
 import com.github.gunin_igor75.domain.repository.OffersRepository
 import com.github.gunin_igor75.domain.repository.TicketOffersRepository
 import com.github.gunin_igor75.domain.repository.TicketsRepository
-import com.github.gunin_igor75.domain.usecase.GetOffers
 import com.github.gunin_igor75.domain.usecase.GetCountryItems
+import com.github.gunin_igor75.domain.usecase.GetOffers
+import com.github.gunin_igor75.domain.usecase.GetTicket
 import com.github.gunin_igor75.domain.usecase.GetTickets
 import com.github.gunin_igor75.domain.usecase.GetTicketsOffers
-import com.github.gunin_igor75.domain.usecase.ReadCityState
-import com.github.gunin_igor75.domain.usecase.SaveCityState
+import com.github.gunin_igor75.domain.usecase.SaveTicket
 import com.github.gunin_igor75.presentation.screens.countryselected.CountrySelectedViewModel
 import com.github.gunin_igor75.presentation.screens.destination.FindCountryViewModel
 import com.github.gunin_igor75.presentation.screens.offers.OffersTextEditViewModel
@@ -26,8 +26,8 @@ import org.koin.dsl.module
 internal val dataModule = module {
     single<OffersRepository<List<Offer>>> {
         OffersRepositoryImpl(
-            localSource = get(),
-            networkSource = get()
+            networkSource = get(),
+            ticketDataSource = get()
         )
     }
     single<TicketOffersRepository<List<TicketsOffers>>> {
@@ -52,11 +52,11 @@ internal val domainModule = module {
     factory<GetTicketsOffers> {
         GetTicketsOffers(repository = get())
     }
-    factory<ReadCityState> {
-        ReadCityState(repository = get())
+    factory<GetTicket> {
+        GetTicket(repository = get())
     }
-    factory<SaveCityState>{
-        SaveCityState(repository = get())
+    factory<SaveTicket> {
+        SaveTicket(repository = get())
     }
     factory<GetCountryItems> {
         GetCountryItems(repository = get())
@@ -67,15 +67,22 @@ internal val presentationModule = module {
     viewModel<OffersTextEditViewModel> {
         OffersTextEditViewModel(
             getOffers = get(),
-            saveCityState = get(),
-            readCityState = get()
+            saveTicket = get(),
+            getTicket = get()
         )
     }
     viewModel<FindCountryViewModel> {
-        FindCountryViewModel(getCountryItems = get())
+        FindCountryViewModel(
+            getCountryItems = get(),
+            saveTicket = get(),
+            getTicket = get()
+        )
     }
     viewModel<CountrySelectedViewModel>{
-        CountrySelectedViewModel(getTicketsOffers = get())
+        CountrySelectedViewModel(
+            getTicketsOffers = get(),
+            saveTicket = get()
+        )
     }
 }
 

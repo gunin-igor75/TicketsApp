@@ -2,7 +2,7 @@ package com.core.local
 
 import kotlinx.coroutines.flow.Flow
 
-interface LocalSource {
+interface LocalSourceProvider {
 
     suspend fun saveCityState(city: String)
 

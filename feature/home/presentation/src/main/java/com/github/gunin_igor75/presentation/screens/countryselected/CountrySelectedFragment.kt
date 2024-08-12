@@ -2,7 +2,6 @@ package com.github.gunin_igor75.presentation.screens.countryselected
 
 import android.os.Bundle
 import android.text.SpannableString
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.core.common.R
+import com.github.gunin_igor75.domain.model.TicketModel
 import com.github.gunin_igor75.presentation.adapter.CountrySelectedAdapter
 import com.github.gunin_igor75.presentation.databinding.FragmentCountrySelectedBinding
 import com.github.gunin_igor75.presentation.utils.MarginItemDecorationRecommendationTickets
@@ -39,16 +38,13 @@ class CountrySelectedFragment : Fragment() {
     private val binding: FragmentCountrySelectedBinding
         get() = _binding ?: throw IllegalStateException("FragmentCountrySelectedBinding is null")
 
-    private val args by navArgs<CountrySelectedFragmentArgs>()
-
     private val vm: CountrySelectedViewModel by viewModel()
+
+    private var currentDateMillis: Long? = null
 
     private val adapter by lazy {
         CountrySelectedAdapter{
-            launchScreenTickets(
-                cityFrom = args.cityFrom,
-                cityTo = args.cityTo
-            )
+            launchScreenTickets()
         }
     }
 
@@ -73,11 +69,18 @@ class CountrySelectedFragment : Fragment() {
             view = binding.inChips.chipDateToday
         )
         setupListenerChips()
+        swapCityFromCityTo()
+        clickBack()
+        clickShowAllTickets()
     }
 
     private fun setupTitleCityFromTo() {
-        binding.textInputEditTextCityFrom.setText(args.cityFrom)
-        binding.textInputEditTextCityTo.setText(args.cityTo)
+        lifecycleScope.launch {
+            vm.cityFromState.flowWithLifecycle(viewLifecycleOwner.lifecycle).collect{
+                binding.textInputEditTextCityFrom.setText(it.cityFrom)
+                binding.textInputEditTextCityTo.setText(it.cityTo)
+            }
+        }
     }
 
     private fun setupRecyclerView() {
@@ -90,18 +93,15 @@ class CountrySelectedFragment : Fragment() {
 
     private fun observeViewModel() {
         lifecycleScope.launch {
-            vm.ticketsOffers.collect {
-                Log.d("CountrySelectedFragment", it.data.toString())
+            vm.ticketsOffers.flowWithLifecycle(viewLifecycleOwner.lifecycle).collect {
                 adapter.items = it.data
             }
         }
     }
 
-    private fun launchScreenTickets(cityFrom: String, cityTo: String) {
-        findNavController().navigate(CountrySelectedFragmentDirections.actionCountrySelectedFragmentToTicketsFragment(
-            cityFrom = cityFrom,
-            cityTo = cityTo
-        ))
+    private fun launchScreenTickets() {
+        findNavController()
+            .navigate(com.github.gunin_igor75.presentation.R.id.action_countrySelectedFragment_to_ticketsFragment)
     }
 
     private fun observeError() {
@@ -154,6 +154,7 @@ class CountrySelectedFragment : Fragment() {
         val datePicker = getDatePicker(constraints)
 
         datePicker.addOnPositiveButtonClickListener { timeInMillis ->
+            currentDateMillis = timeInMillis
             dateSending = timeInMillis
             val spannableString = getSpannableString(timeInMillis)
             binding.inChips.chipDateToday.text = spannableString
@@ -210,6 +211,41 @@ class CountrySelectedFragment : Fragment() {
             .setValidator(dataValidator)
             .build()
         return constrains
+    }
+
+    private fun swapCityFromCityTo() {
+        binding.textInputLayoutCityFrom.setEndIconOnClickListener {
+            val textFrom = binding.textInputEditTextCityFrom.text.toString()
+            val textTo = binding.textInputEditTextCityTo.text.toString()
+            binding.textInputEditTextCityFrom.setText(textTo)
+            binding.textInputEditTextCityTo.setText(textFrom)
+        }
+    }
+
+    private fun clickBack() {
+        binding.imageView.setOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
+
+    private fun clickShowAllTickets() {
+        binding.buttonShowAllTickets.setOnClickListener {
+            val cityFrom = binding.textInputEditTextCityFrom.text.toString()
+            val cityTo = binding.textInputEditTextCityTo.text.toString()
+            val isValidateFrom = vm.validateCity(cityFrom)
+            val isValidateTo = vm.validateCity(cityTo)
+            if (isValidateFrom && isValidateTo) {
+                currentDateMillis?.let {
+                    val ticketModel = TicketModel(
+                        cityFrom = cityFrom,
+                        cityTo = cityTo,
+                        date = Date(it)
+                    )
+                    vm.saveCity(ticketModel)
+                }
+                launchScreenTickets()
+            }
+        }
     }
 
     private companion object {

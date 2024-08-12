@@ -3,9 +3,15 @@ package com.github.gunin_igor75.presentation.screens.countryselected
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.core.common.model.UiEvent
+import com.core.common.utils.Constants.Companion.EMPTY_LINE
+import com.core.common.utils.Constants.Companion.TICKET_ID
+import com.github.gunin_igor75.domain.model.TicketModel
+import com.github.gunin_igor75.domain.usecase.GetTicket
 import com.github.gunin_igor75.domain.usecase.GetTicketsOffers
+import com.github.gunin_igor75.domain.usecase.SaveTicket
 import com.github.gunin_igor75.presentation.mappers.toUiTicketsOffers
 import com.github.gunin_igor75.presentation.model.HomeStateHolder
+import com.github.gunin_igor75.presentation.screens.base.BaseTextEditViewModel
 import com.github.gunin_igor75.presentation.utils.buttonItemList
 import com.github.gunin_igor75.presentation.utils.listLoading
 import com.github.gunin_igor75.presentation.utils.titleItemList
@@ -15,13 +21,18 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
 class CountrySelectedViewModel(
-    private val getTicketsOffers: GetTicketsOffers
-): ViewModel() {
+    private val getTicketsOffers: GetTicketsOffers,
+    private val saveTicket: SaveTicket,
+    getTicket: GetTicket,
+): BaseTextEditViewModel() {
+
+    val cityFromState: Flow<TicketModel> = getTicket(TICKET_ID)
 
     private val _error: Channel<Boolean> = Channel()
     val error: Flow<Boolean> = _error.receiveAsFlow()
@@ -56,6 +67,12 @@ class CountrySelectedViewModel(
                     }
                 }
             }.launchIn(viewModelScope)
+        }
+    }
+
+    fun saveCity(ticketModel: TicketModel) {
+        viewModelScope.launch {
+            saveTicket(ticketModel)
         }
     }
 }

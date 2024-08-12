@@ -94,8 +94,8 @@ class OffersFragment : Fragment() {
         binding.inInputCity.textInputEditTextCityFrom.filters = arrayOf(filter)
         binding.inInputCity.tetInputEditTextCityTo.filters = arrayOf(filter)
         lifecycleScope.launch {
-            vm.cityStorage.flowWithLifecycle(viewLifecycleOwner.lifecycle).collect {
-                binding.inInputCity.textInputEditTextCityFrom.setText(it)
+            vm.cityFromState.flowWithLifecycle(viewLifecycleOwner.lifecycle).collect {
+                binding.inInputCity.textInputEditTextCityFrom.setText(it.cityFrom)
             }
         }
     }
@@ -121,23 +121,21 @@ class OffersFragment : Fragment() {
         binding.inInputCity.imageView.setOnClickListener {
             val city = binding.inInputCity.textInputEditTextCityFrom.text.toString()
             saveCityFrom(city)
-            navigateToScreenDestination(city)
+            navigateToScreenDestination()
         }
         binding.inInputCity.tetInputEditTextCityTo.setOnFocusChangeListener { view, hasFocus ->
             if (hasFocus) {
                 val city = binding.inInputCity.textInputEditTextCityFrom.text.toString()
                 view.clearFocus()
                 saveCityFrom(city)
-                navigateToScreenDestination(city)
+                navigateToScreenDestination()
             }
         }
     }
 
-    private fun navigateToScreenDestination(city: String) {
+    private fun navigateToScreenDestination() {
         findNavController().navigate(
-            OffersFragmentDirections.actionOffersFragmentToFindCountryFragment(
-                city
-            )
+            com.github.gunin_igor75.presentation.R.id.action_OffersFragment_to_findCountryFragment
         )
     }
     private fun saveCityFrom(city: String) {

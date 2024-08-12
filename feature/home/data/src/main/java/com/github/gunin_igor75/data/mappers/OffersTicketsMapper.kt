@@ -1,10 +1,12 @@
 package com.github.gunin_igor75.data.mappers
 
+import com.core.local.model.TicketDb
 import com.core.network.dto.OffersContainer
 import com.core.network.dto.TicketsContainer
 import com.core.network.dto.TicketsOffersContainer
 import com.github.gunin_igor75.domain.model.Offer
 import com.github.gunin_igor75.domain.model.Ticket
+import com.github.gunin_igor75.domain.model.TicketModel
 import com.github.gunin_igor75.domain.model.TicketsOffers
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
@@ -91,6 +93,9 @@ fun getFormatNumber(value: Double): String {
     return DecimalFormat("0.0", decimalFormat).format(value)
 }
 
+fun TicketModel.toTicketDb() = TicketDb(id, cityFrom, cityTo, date)
+
+fun TicketDb.toTicketModel() = TicketModel(id, cityFrom, cityTo, date)
 
 
 

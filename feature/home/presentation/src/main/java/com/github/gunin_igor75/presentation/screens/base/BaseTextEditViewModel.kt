@@ -15,4 +15,6 @@ open class BaseTextEditViewModel: ViewModel() {
     fun validate(world: String) {
         _isValidateCity.value = world.isNotBlank()
     }
+
+    fun validateCity(city: String) = city.isNotBlank()
 }

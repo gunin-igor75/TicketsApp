@@ -27,7 +27,7 @@
             android:text="@string/date_example" />
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/hipCountPeople"
+            android:id="@+id/chipCountPeople"
             style="@style/ChoiceCountrySelected"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

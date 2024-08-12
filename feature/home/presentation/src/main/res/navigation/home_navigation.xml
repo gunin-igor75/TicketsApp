@@ -18,9 +18,6 @@
         android:name="com.github.gunin_igor75.presentation.screens.destination.FindCountryFragment"
         android:label="fragment_find"
         tools:layout="@layout/fragment_find">
-        <argument
-            android:name="cityFrom"
-            app:argType="string" />
         <action
             android:id="@+id/action_findCountryFragment_to_hardRouteFragment"
             app:destination="@id/hardRouteFragment" />
@@ -54,12 +51,6 @@
         android:name="com.github.gunin_igor75.presentation.screens.countryselected.CountrySelectedFragment"
         android:label="fragment_country_selected"
         tools:layout="@layout/fragment_country_selected">
-        <argument
-            android:name="cityFrom"
-            app:argType="string" />
-        <argument
-            android:name="cityTo"
-            app:argType="string" />
         <action
             android:id="@+id/action_countrySelectedFragment_to_ticketsFragment"
             app:destination="@id/ticketsFragment" />
@@ -67,15 +58,8 @@
     <fragment
         android:id="@+id/ticketsFragment"
         android:name="com.github.gunin_igor75.presentation.screens.tickets.TicketsFragment"
-        android:label="fragment_tikets"
-        tools:layout="@layout/fragment_tikets" >
-        <argument
-            android:name="cityFrom"
-            app:argType="string" />
-        <argument
-            android:name="cityTo"
-            app:argType="string" />
-    </fragment>
+        android:label="fragment_tickets"
+        tools:layout="@layout/fragment_tickets" />
 
 
 </navigation>

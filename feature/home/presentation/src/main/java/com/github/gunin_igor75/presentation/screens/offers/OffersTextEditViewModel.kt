@@ -2,9 +2,12 @@ package com.github.gunin_igor75.presentation.screens.offers
 
 import androidx.lifecycle.viewModelScope
 import com.core.common.model.UiEvent
+import com.core.common.utils.Constants.Companion.EMPTY_LINE
+import com.core.common.utils.Constants.Companion.TICKET_ID
+import com.github.gunin_igor75.domain.model.TicketModel
 import com.github.gunin_igor75.domain.usecase.GetOffers
-import com.github.gunin_igor75.domain.usecase.ReadCityState
-import com.github.gunin_igor75.domain.usecase.SaveCityState
+import com.github.gunin_igor75.domain.usecase.GetTicket
+import com.github.gunin_igor75.domain.usecase.SaveTicket
 import com.github.gunin_igor75.presentation.mappers.toUiOffers
 import com.github.gunin_igor75.presentation.model.HomeStateHolder
 import com.github.gunin_igor75.presentation.screens.base.BaseTextEditViewModel
@@ -15,17 +18,18 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
 class OffersTextEditViewModel(
     private val getOffers: GetOffers,
-    private val saveCityState: SaveCityState,
-    readCityState: ReadCityState,
+    private val saveTicket: SaveTicket,
+    getTicket: GetTicket,
 ) : BaseTextEditViewModel() {
 
-    val cityStorage: Flow<String> = readCityState()
+    val cityFromState: Flow<TicketModel> = getTicket(TICKET_ID)
 
     private var _offersState: MutableStateFlow<HomeStateHolder> =
         MutableStateFlow(HomeStateHolder())
@@ -39,10 +43,9 @@ class OffersTextEditViewModel(
         getUiOffersState()
     }
 
-
     fun saveCity(city: String) {
         viewModelScope.launch {
-            saveCityState(city)
+            saveTicket(TicketModel(cityFrom = city))
         }
     }
 

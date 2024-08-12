@@ -13,5 +13,6 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.jvm) apply false
     alias(libs.plugins.parcelize) apply false
     alias(libs.plugins.safeags) apply false
+    alias(libs.plugins.ksp) apply false
 }
 

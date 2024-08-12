@@ -1,6 +1,6 @@
 [versions]
 agp = "8.5.1"
-kotlin = "1.9.0"
+kotlin = "2.0.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -23,6 +23,9 @@ navigationUiKtx = "2.7.7"
 lifecycle = "2.8.3"
 adapter-delegates = "4.3.2"
 safeargs = "2.7.7"
+room = "2.6.1"
+ksp = "2.0.0-1.0.23"
+kirich = "1.4.6"
 
 
 [libraries]
@@ -52,6 +55,10 @@ androidx-lifecycle-viewmodel = {group = "androidx.lifecycle", name = "lifecycle-
 adapter-delegates-core = {group = "com.hannesdorfmann", name = "adapterdelegates4-kotlin-dsl", version.ref = "adapter-delegates"}
 adapter-delegates-viewbinding = {group = "com.hannesdorfmann" , name = "adapterdelegates4-kotlin-dsl-viewbinding", version.ref = "adapter-delegates"}
 navigation-safeargs = {group = "androidx.navigation", name = "navigation-safe-args-gradle-plugin", version.ref = "safeargs"}
+room-runtime = {group = "androidx.room", name = "room-runtime", version.ref = "room"}
+room-ksp = {group = "androidx.room", name = "room-compiler", version.ref = "room"}
+room-coroutine = {group = "androidx.room", name = "room-ktx", version.ref = "room"}
+viewbinding-delegate-kirich = {group = "com.github.kirich1409", name = "viewbindingpropertydelegate", version.ref = "kirich"}
 
 
 [plugins]
@@ -61,4 +68,4 @@ android-library = { id = "com.android.library", version.ref = "agp" }
 jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 safeags = {id = "androidx.navigation.safeargs.kotlin", version.ref = "safeargs"}
-
+ksp = {id = "com.google.devtools.ksp", version.ref = "ksp"}

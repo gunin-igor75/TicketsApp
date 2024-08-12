@@ -9,9 +9,9 @@ import androidx.annotation.StringRes
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.core.common.R
 import com.core.common.utils.KeyBoardFilter
+import com.github.gunin_igor75.domain.model.TicketModel
 import com.github.gunin_igor75.presentation.adapter.CountryItemAdapter
 import com.github.gunin_igor75.presentation.databinding.FragmentFindBinding
 import com.github.gunin_igor75.presentation.utils.MarginItemDecorationFind
@@ -26,8 +26,6 @@ class FindCountryFragment: BottomSheetDialogFragment() {
     private var _binding: FragmentFindBinding? = null
     private val binding: FragmentFindBinding
         get() = _binding?: throw IllegalStateException("FragmentFindBinding is null")
-
-    private val args by navArgs<FindCountryFragmentArgs>()
 
     private val vm: FindCountryViewModel by viewModel()
 
@@ -52,7 +50,6 @@ class FindCountryFragment: BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         setupFullScreenBottomSheet()
         setupValueEditTextCityFrom()
-        setupTextInputCityFrom()
         setupRecyclerView()
         observeViewModel()
         launchScreensHnt()
@@ -89,11 +86,6 @@ class FindCountryFragment: BottomSheetDialogFragment() {
         }
     }
 
-    private fun setupTextInputCityFrom() {
-        val city = args.cityFrom
-        binding.includeInputCity.textInputEditTextCityFrom.setText(city)
-    }
-
     private fun setupRecyclerView() {
         with(binding) {
             val divider = resources.getDimensionPixelSize(R.dimen.dp_1x)
@@ -107,6 +99,11 @@ class FindCountryFragment: BottomSheetDialogFragment() {
     private fun setupValueEditTextCityFrom() {
         binding.includeInputCity.textInputEditTextCityFrom.filters = arrayOf(filter)
         binding.includeInputCity.tetInputEditTextCityTo.filters = arrayOf(filter)
+        lifecycleScope.launch {
+            vm.cityFromState.flowWithLifecycle(viewLifecycleOwner.lifecycle).collect {
+                binding.includeInputCity.textInputEditTextCityFrom.setText(it.cityFrom)
+            }
+        }
     }
 
     private fun launchScreensHnt() {
@@ -129,13 +126,13 @@ class FindCountryFragment: BottomSheetDialogFragment() {
     private fun onClickStartIconCityTo() {
         binding.includeInputCity.textInputLayoutCityTo.setStartIconOnClickListener {
             val cityTo = binding.includeInputCity.tetInputEditTextCityTo.text.toString()
-            val isValidate = vm.validateCity(cityTo)
-            if (isValidate) {
-                val cityFrom = binding.includeInputCity.textInputEditTextCityFrom.text.toString()
-                findNavController().navigate(FindCountryFragmentDirections.actionFindCountryFragmentToCountrySelectedFragment(
-                    cityFrom = cityFrom,
-                    cityTo = cityTo
-                ))
+            val cityFrom = binding.includeInputCity.textInputEditTextCityFrom.text.toString()
+            val isValidateTo = vm.validateCity(cityTo)
+            val isValidateFrom = vm.validateCity(cityFrom)
+            if (isValidateTo && isValidateFrom) {
+                val ticket = TicketModel(cityFrom = cityFrom, cityTo = cityTo)
+                vm.saveCity(ticket)
+                findNavController().navigate(com.github.gunin_igor75.presentation.R.id.action_findCountryFragment_to_countrySelectedFragment)
             }
         }
     }
