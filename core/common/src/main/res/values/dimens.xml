@@ -16,6 +16,7 @@
     <dimen name="_10dp">10dp</dimen>
     <dimen name="_6dp">6dp</dimen>
     <dimen name="_4dp">4dp</dimen>
+    <dimen name="_2dp">2dp</dimen>
     <dimen name="_1dp">1dp</dimen>
 
     <dimen name="width_offers_card">133dp</dimen>
@@ -27,4 +28,6 @@
     <dimen name="height_find_item">40dp</dimen>
     <dimen name="width_circle_recommendation_tickets">24dp</dimen>
     <dimen name="height_circle_recommendation_tickets">24dp</dimen>
+    <dimen name="width_price_ticket">90dp</dimen>
+    <dimen name="width_ticket_description">200dp</dimen>
 </resources>

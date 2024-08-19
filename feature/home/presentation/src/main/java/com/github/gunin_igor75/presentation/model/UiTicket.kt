@@ -1,7 +1,9 @@
-package com.github.gunin_igor75.domain.model
+package com.github.gunin_igor75.presentation.model
 
-data class Ticket(
-    val id: Int,
+import com.core.common.model.ListItem
+
+data class UiTicket(
+    override val id: Int,
     val price: String,
     val badge: String?,
     val timeDeparture: String,
@@ -10,4 +12,4 @@ data class Ticket(
     val transfer:Boolean,
     val airportArrival: String,
     val airportDeparture: String
-)
+): ListItem

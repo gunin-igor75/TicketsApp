@@ -6,13 +6,12 @@ import com.core.network.dto.TicketsContainer
 import com.core.network.dto.TicketsOffersContainer
 import com.github.gunin_igor75.domain.model.Offer
 import com.github.gunin_igor75.domain.model.Ticket
-import com.github.gunin_igor75.domain.model.TicketModel
+import com.github.gunin_igor75.domain.model.TitleTicketModel
 import com.github.gunin_igor75.domain.model.TicketsOffers
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Date
 import java.util.Locale
 
 private const val PATTERN_DATE_TIME = "yyyy-MM-dd'T'HH:mm:ss"
@@ -41,6 +40,7 @@ private fun TicketsOffersContainer.TicketOfferDto.toTicketsOffers() = TicketsOff
 
 private fun TicketsContainer.TicketDto.toTicket() = Ticket(
     id = id,
+    price = price.value.toString().toCountRuble(),
     badge = badge,
     timeDeparture = getHourAndMinute(departure.date),
     timeArrival = getHourAndMinute(arrival.date),
@@ -93,9 +93,9 @@ fun getFormatNumber(value: Double): String {
     return DecimalFormat("0.0", decimalFormat).format(value)
 }
 
-fun TicketModel.toTicketDb() = TicketDb(id, cityFrom, cityTo, date)
+fun TitleTicketModel.toTicketDb() = TicketDb(id, cityFrom, cityTo, date)
 
-fun TicketDb.toTicketModel() = TicketModel(id, cityFrom, cityTo, date)
+fun TicketDb.toTicketModel() = TitleTicketModel(id, cityFrom, cityTo, date)
 
 
 

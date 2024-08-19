@@ -1,10 +1,8 @@
 package com.github.gunin_igor75.presentation.screens.destination
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.core.common.utils.Constants.Companion.EMPTY_LINE
 import com.core.common.utils.Constants.Companion.TICKET_ID
-import com.github.gunin_igor75.domain.model.TicketModel
+import com.github.gunin_igor75.domain.model.TitleTicketModel
 import com.github.gunin_igor75.domain.usecase.GetCountryItems
 import com.github.gunin_igor75.domain.usecase.GetTicket
 import com.github.gunin_igor75.domain.usecase.SaveTicket
@@ -22,7 +20,7 @@ class FindCountryViewModel(
     getTicket: GetTicket,
 ) : BaseTextEditViewModel() {
 
-    val cityFromState: Flow<TicketModel> = getTicket(TICKET_ID)
+    val cityFromState: Flow<TitleTicketModel> = getTicket(TICKET_ID)
 
     fun countryItems() = getCountryItems()
         .map { it.toCountryItems() }
@@ -33,9 +31,9 @@ class FindCountryViewModel(
         )
 
 
-    fun saveCity(ticketModel: TicketModel) {
+    fun saveCity(titleTicketModel: TitleTicketModel) {
         viewModelScope.launch {
-            saveTicket(ticketModel)
+            saveTicket(titleTicketModel)
         }
     }
 }

@@ -1,19 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/black_2"
-    app:cardCornerRadius="8dp"
-    app:contentPadding="16dp">
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:id="@+id/frameLayoutBadge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_ticket_badge"
+        android:paddingHorizontal="@dimen/_10dp"
+        android:paddingVertical="@dimen/_2dp"
+        android:translationZ="@dimen/_1dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewBadge"
+            style="@style/sfProDisplayMedium.14sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            tools:text="@string/arrival_badge" />
+
+    </FrameLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_ticket"
+        android:padding="@dimen/dp_2x"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvPriceTicket"
+            android:id="@+id/textViewPriceTicket"
             style="@style/sfProDisplayBold.22sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -29,10 +54,10 @@
             android:contentDescription="@string/image_circle"
             android:src="@drawable/circle_red"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvPriceTicket" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewPriceTicket" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvBeginFlight"
+            android:id="@+id/textViewBeginFlight"
             style="@style/sfProDisplayMedium.14sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,12 +73,12 @@
             android:layout_height="1dp"
             android:layout_marginStart="2dp"
             android:background="@color/gray_4"
-            app:layout_constraintBottom_toBottomOf="@+id/tvBeginFlight"
-            app:layout_constraintStart_toEndOf="@+id/tvBeginFlight"
-            app:layout_constraintTop_toTopOf="@+id/tvBeginFlight" />
+            app:layout_constraintBottom_toBottomOf="@+id/textViewBeginFlight"
+            app:layout_constraintStart_toEndOf="@+id/textViewBeginFlight"
+            app:layout_constraintTop_toTopOf="@+id/textViewBeginFlight" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvEndFlight"
+            android:id="@+id/textViewEndFlight"
             style="@style/sfProDisplayMedium.14sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -64,15 +89,15 @@
             tools:text="15:35" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvTotalFlight"
+            android:id="@+id/textViewTotalFlight"
             style="@style/sfProDisplayMedium.14sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="13dp"
             android:text="@string/total_flight"
-            app:layout_constraintBottom_toBottomOf="@+id/tvEndFlight"
-            app:layout_constraintStart_toEndOf="@+id/tvEndFlight"
-            app:layout_constraintTop_toTopOf="@+id/tvEndFlight"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewEndFlight"
+            app:layout_constraintStart_toEndOf="@+id/textViewEndFlight"
+            app:layout_constraintTop_toTopOf="@+id/textViewEndFlight"
             tools:text="3.5ч в пути" />
 
         <LinearLayout
@@ -80,9 +105,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="@id/tvTotalFlight"
-            app:layout_constraintStart_toEndOf="@id/tvTotalFlight"
-            app:layout_constraintTop_toTopOf="@id/tvTotalFlight">
+            app:layout_constraintBottom_toBottomOf="@id/textViewTotalFlight"
+            app:layout_constraintStart_toEndOf="@id/textViewTotalFlight"
+            app:layout_constraintTop_toTopOf="@id/textViewTotalFlight">
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/sfProDisplayMedium.14sp"
@@ -103,7 +128,7 @@
 
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvAirDeparture"
+            android:id="@+id/textViewAirDeparture"
             style="@style/sfProDisplayMedium.14sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -115,18 +140,18 @@
             tools:text="DME" />
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvAirArrival"
+            android:id="@+id/textViewAirArrival"
             style="@style/sfProDisplayMedium.14sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:textColor="@color/gray_4"
-            app:layout_constraintStart_toEndOf="@id/tvAirDeparture"
-            app:layout_constraintTop_toBottomOf="@id/tvAirDeparture"
-            app:layout_constraintTop_toTopOf="@id/tvAirDeparture"
+            app:layout_constraintStart_toEndOf="@id/textViewAirDeparture"
+            app:layout_constraintTop_toBottomOf="@id/textViewAirDeparture"
+            app:layout_constraintTop_toTopOf="@id/textViewAirDeparture"
             tools:text="AER" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</com.google.android.material.card.MaterialCardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

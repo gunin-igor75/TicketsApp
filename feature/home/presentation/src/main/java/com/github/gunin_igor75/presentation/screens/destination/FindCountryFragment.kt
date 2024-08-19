@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.core.common.R
 import com.core.common.utils.KeyBoardFilter
-import com.github.gunin_igor75.domain.model.TicketModel
+import com.github.gunin_igor75.domain.model.TitleTicketModel
 import com.github.gunin_igor75.presentation.adapter.CountryItemAdapter
 import com.github.gunin_igor75.presentation.databinding.FragmentFindBinding
 import com.github.gunin_igor75.presentation.utils.MarginItemDecorationFind
@@ -130,7 +130,7 @@ class FindCountryFragment: BottomSheetDialogFragment() {
             val isValidateTo = vm.validateCity(cityTo)
             val isValidateFrom = vm.validateCity(cityFrom)
             if (isValidateTo && isValidateFrom) {
-                val ticket = TicketModel(cityFrom = cityFrom, cityTo = cityTo)
+                val ticket = TitleTicketModel(cityFrom = cityFrom, cityTo = cityTo)
                 vm.saveCity(ticket)
                 findNavController().navigate(com.github.gunin_igor75.presentation.R.id.action_findCountryFragment_to_countrySelectedFragment)
             }

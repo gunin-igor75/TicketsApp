@@ -20,6 +20,7 @@ import com.github.gunin_igor75.domain.usecase.SaveTicket
 import com.github.gunin_igor75.presentation.screens.countryselected.CountrySelectedViewModel
 import com.github.gunin_igor75.presentation.screens.destination.FindCountryViewModel
 import com.github.gunin_igor75.presentation.screens.offers.OffersTextEditViewModel
+import com.github.gunin_igor75.presentation.screens.tickets.TicketsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -81,7 +82,15 @@ internal val presentationModule = module {
     viewModel<CountrySelectedViewModel>{
         CountrySelectedViewModel(
             getTicketsOffers = get(),
-            saveTicket = get()
+            saveTicket = get(),
+            getTicket = get()
+        )
+    }
+
+    viewModel<TicketsViewModel> {
+        TicketsViewModel(
+            getTicket = get(),
+            getTickets = get()
         )
     }
 }

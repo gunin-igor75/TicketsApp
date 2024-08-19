@@ -2,9 +2,8 @@ package com.github.gunin_igor75.presentation.screens.offers
 
 import androidx.lifecycle.viewModelScope
 import com.core.common.model.UiEvent
-import com.core.common.utils.Constants.Companion.EMPTY_LINE
 import com.core.common.utils.Constants.Companion.TICKET_ID
-import com.github.gunin_igor75.domain.model.TicketModel
+import com.github.gunin_igor75.domain.model.TitleTicketModel
 import com.github.gunin_igor75.domain.usecase.GetOffers
 import com.github.gunin_igor75.domain.usecase.GetTicket
 import com.github.gunin_igor75.domain.usecase.SaveTicket
@@ -18,7 +17,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
@@ -29,7 +27,7 @@ class OffersTextEditViewModel(
     getTicket: GetTicket,
 ) : BaseTextEditViewModel() {
 
-    val cityFromState: Flow<TicketModel> = getTicket(TICKET_ID)
+    val cityFromState: Flow<TitleTicketModel> = getTicket(TICKET_ID)
 
     private var _offersState: MutableStateFlow<HomeStateHolder> =
         MutableStateFlow(HomeStateHolder())
@@ -45,7 +43,7 @@ class OffersTextEditViewModel(
 
     fun saveCity(city: String) {
         viewModelScope.launch {
-            saveTicket(TicketModel(cityFrom = city))
+            saveTicket(TitleTicketModel(cityFrom = city))
         }
     }
 

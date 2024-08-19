@@ -10,6 +10,7 @@ import com.github.gunin_igor75.domain.repository.TicketsRepository
 
 class TicketsRepositoryImpl(
     private val networkSource: NetworkSource,
+
 ) : TicketsRepository<List<Ticket>>, BaseService() {
 
     override suspend fun getTickets(): DataResult<List<Ticket>> =

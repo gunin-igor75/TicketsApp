@@ -11,7 +11,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.core.common.R
-import com.github.gunin_igor75.domain.model.TicketModel
+import com.github.gunin_igor75.domain.model.TitleTicketModel
 import com.github.gunin_igor75.presentation.adapter.CountrySelectedAdapter
 import com.github.gunin_igor75.presentation.databinding.FragmentCountrySelectedBinding
 import com.github.gunin_igor75.presentation.utils.MarginItemDecorationRecommendationTickets
@@ -236,12 +236,12 @@ class CountrySelectedFragment : Fragment() {
             val isValidateTo = vm.validateCity(cityTo)
             if (isValidateFrom && isValidateTo) {
                 currentDateMillis?.let {
-                    val ticketModel = TicketModel(
+                    val titleTicketModel = TitleTicketModel(
                         cityFrom = cityFrom,
                         cityTo = cityTo,
                         date = Date(it)
                     )
-                    vm.saveCity(ticketModel)
+                    vm.saveCity(titleTicketModel)
                 }
                 launchScreenTickets()
             }

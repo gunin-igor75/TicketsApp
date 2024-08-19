@@ -26,6 +26,7 @@ safeargs = "2.7.7"
 room = "2.6.1"
 ksp = "2.0.0-1.0.23"
 kirich = "1.4.6"
+shimmer = "0.5.0"
 
 
 [libraries]
@@ -59,6 +60,7 @@ room-runtime = {group = "androidx.room", name = "room-runtime", version.ref = "r
 room-ksp = {group = "androidx.room", name = "room-compiler", version.ref = "room"}
 room-coroutine = {group = "androidx.room", name = "room-ktx", version.ref = "room"}
 viewbinding-delegate-kirich = {group = "com.github.kirich1409", name = "viewbindingpropertydelegate", version.ref = "kirich"}
+shimmer-core = {group = "com.facebook.shimmer", name = "shimmer", version.ref = "shimmer"}
 
 
 [plugins]
