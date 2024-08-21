@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.feature.home.data"
+    namespace = "com.github.gunin_igor75.data"
     compileSdk = 34
 
     defaultConfig {
@@ -38,8 +38,13 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
 
-    //domain module
+    //retrofit
+    implementation(libs.retrofit.core)
+
     implementation(project(":feature:home:domain"))
+    implementation(project(":core:local"))
+    implementation(project(":core:network"))
+    implementation(project(":core:common"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

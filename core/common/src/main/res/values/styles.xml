@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="sfProDisplayBold">
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/sf_pro_display_semibold</item>
+    </style>
+    <style name="sfProDisplayBold.22sp">
+        <item name="android:textSize">22sp</item>
+    </style>
+    <style name="sfProDisplayBold.20sp">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="sfProDisplayBold.16sp">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="sfProDisplayBold.14sp">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+
+    <style name="sfProDisplayMedium">
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/sf_pro_display_medium</item>
+    </style>
+    <style name="sfProDisplayMedium.16sp">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="sfProDisplayMedium.14sp">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="sfProDisplayRegular">
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/sf_pro_display_regular</item>
+    </style>
+    <style name="sfProDisplayRegular.16sp">
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="sfProDisplayRegular.14sp">
+        <item name="android:textSize">14sp</item>
+    </style>
+    <style name="sfProDisplayRegular.10sp">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="sfProDisplaySemBoldItalic">
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/sf_pro_display_semibold_italic</item>
+    </style>
+
+    <style name="sfProDisplaySemBoldItalic.16sp">
+        <item name="android:textSize">16sp</item>
+        <item name="fontStyle">italic</item>
+    </style>
+
+    <style name="RoundedSquare">
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="ButtonTickets">
+        <item name="fontFamily">@font/sf_pro_display_semibold</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="TextInputLayoutCustom" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textColorHint">@color/gray_on_surface</item>
+        <item name="hintTextColor">@color/inner_grey</item>
+        <item name="boxStrokeColor">@color/transparent</item>
+        <item name="boxBackgroundColor">@color/inner_grey</item>
+        <item name="cursorColor">@color/white</item>
+    </style>
+
+    <style name="TextInputLayoutCountrySelected" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:textColorHint">@color/gray_on_surface</item>
+        <item name="hintTextColor">@color/card_grey</item>
+        <item name="boxStrokeColor">@color/transparent</item>
+        <item name="boxBackgroundColor">@color/card_grey</item>
+        <item name="cursorColor">@color/white</item>
+    </style>
+
+    <style name="TextEditStyle">
+        <item name="android:inputType">textCapWords</item>
+        <item name="minHeight">@dimen/dp_6x</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="MyTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <!-- border color -->
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="cursorColor">@color/white</item>
+        <!-- The color of the label when it is collapsed and the text field is active -->
+        <item name="hintTextColor">@color/gray_1</item>
+        <!-- The color of the label in all other text field states (such as resting and disabled) -->
+        <item name="android:textColorHint">@color/gray_1</item>
+    </style>
+
+
+    <style name="ChoiceCountrySelected" parent="Widget.MaterialComponents.Chip.Action">
+        <item name="chipBackgroundColor">@color/card_grey</item>
+        <item name="fontFamily">@font/sf_pro_display_medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+</resources>

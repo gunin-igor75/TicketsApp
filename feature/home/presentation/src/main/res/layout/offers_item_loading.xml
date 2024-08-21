@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:background="@color/main_bg">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="@dimen/width_offers_card"
+        android:layout_height="@dimen/height_offers_card"
+        app:cardCornerRadius="@dimen/dp_2x">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/image_offers"
+            android:src="@drawable/rounded_bg_loading" />
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:layout_width="@dimen/width_price_title_loading"
+        android:layout_height="@dimen/_20dp"
+        android:layout_marginTop="@dimen/_4dp"
+        android:background="@drawable/rounded_bg_loading"
+        android:gravity="center" />
+
+    <View
+        android:layout_width="@dimen/width_price_content_loading"
+        android:layout_height="@dimen/_20dp"
+        android:layout_marginTop="@dimen/_4dp"
+        android:background="@drawable/rounded_bg_loading"
+        android:gravity="center" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/image_air"
+            android:src="@drawable/ic_air_tickets"
+            app:tint="@color/grey" />
+
+        <View
+            android:layout_width="@dimen/width_price_ticket_loading"
+            android:layout_height="@dimen/_20dp"
+            android:background="@drawable/rounded_bg_loading"
+            android:gravity="center" />
+
+    </LinearLayout>
+</LinearLayout>

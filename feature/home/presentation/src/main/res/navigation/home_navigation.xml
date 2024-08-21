@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_navigation"
+    app:startDestination="@id/OffersFragment">
+
+    <fragment
+        android:id="@+id/OffersFragment"
+        android:name="com.github.gunin_igor75.presentation.screens.offers.OffersFragment"
+        tools:layout="@layout/fragment_offers">
+        <action
+            android:id="@+id/action_OffersFragment_to_findCountryFragment"
+            app:destination="@id/findCountryFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/findCountryFragment"
+        android:name="com.github.gunin_igor75.presentation.screens.destination.FindCountryFragment"
+        android:label="fragment_find"
+        tools:layout="@layout/fragment_find">
+        <action
+            android:id="@+id/action_findCountryFragment_to_hardRouteFragment"
+            app:destination="@id/hardRouteFragment" />
+        <action
+            android:id="@+id/action_findCountryFragment_to_hotTicketsFragment"
+            app:destination="@id/hotTicketsFragment" />
+        <action
+            android:id="@+id/action_findCountryFragment_to_weekendFragment"
+            app:destination="@id/weekendFragment" />
+        <action
+            android:id="@+id/action_findCountryFragment_to_countrySelectedFragment"
+            app:destination="@id/countrySelectedFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/hardRouteFragment"
+        android:name="com.github.gunin_igor75.presentation.screens.hardroute.HardRouteFragment"
+        android:label="fragment_hard_route"
+        tools:layout="@layout/fragment_hard_route" />
+    <fragment
+        android:id="@+id/hotTicketsFragment"
+        android:name="com.github.gunin_igor75.presentation.screens.hottickets.HotTicketsFragment"
+        android:label="fragment_hot_tickets"
+        tools:layout="@layout/fragment_hot_tickets" />
+    <fragment
+        android:id="@+id/weekendFragment"
+        android:name="com.github.gunin_igor75.presentation.screens.weekend.WeekendFragment"
+        android:label="fragment_weekend"
+        tools:layout="@layout/fragment_weekend" />
+    <fragment
+        android:id="@+id/countrySelectedFragment"
+        android:name="com.github.gunin_igor75.presentation.screens.countryselected.CountrySelectedFragment"
+        android:label="fragment_country_selected"
+        tools:layout="@layout/fragment_country_selected">
+        <action
+            android:id="@+id/action_countrySelectedFragment_to_ticketsFragment"
+            app:destination="@id/ticketsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ticketsFragment"
+        android:name="com.github.gunin_igor75.presentation.screens.tickets.TicketsFragment"
+        android:label="fragment_tickets"
+        tools:layout="@layout/fragment_tickets" />
+
+
+</navigation>

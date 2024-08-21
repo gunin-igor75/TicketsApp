@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CardChoiceView">
+        <attr name="iconCardChoice" format="reference"/>
+        <attr name="textCardChoice" format="string"/>
+    </declare-styleable>
+
+    <attr name="cardChoiceStyle" format="reference"/>
+    
+</resources>

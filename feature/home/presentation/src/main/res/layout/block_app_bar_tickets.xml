@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/card_grey"
+    android:orientation="horizontal"
+    android:paddingVertical="@dimen/dp_1x">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:contentDescription="@string/icon_arrow_left"
+        android:src="@drawable/ic_arrow_left"
+        app:tint="@color/blue" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/dp_1x"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewTitle"
+            style="@style/sfProDisplayBold.16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="@string/moscow_sochi" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewDetails"
+            style="@style/sfProDisplayMedium.14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4dp"
+            tools:text="@string/time_app_bar" />
+    </LinearLayout>
+</LinearLayout>

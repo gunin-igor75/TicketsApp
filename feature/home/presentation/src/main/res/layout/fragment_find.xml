@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg"
+    tools:context=".screens.destination.FindCountryFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/rounded_card"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_2x">
+
+        <View
+            android:layout_width="38dp"
+            android:layout_height="5dp"
+            android:layout_gravity="center"
+            android:background="@color/inner_grey" />
+
+        <include
+            android:id="@+id/includeInputCity"
+            layout="@layout/block_find_input_city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_3x" />
+
+        <include
+            android:id="@+id/includeHintFind"
+            layout="@layout/block_find_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_3x" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_30dp"
+            android:background="@drawable/rounded_block_rec"
+            android:padding="@dimen/dp_2x">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="3"
+                tools:listitem="@layout/find_recommendation_item" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+</FrameLayout>

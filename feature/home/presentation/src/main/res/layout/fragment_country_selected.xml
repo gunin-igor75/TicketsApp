@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dp_2x"
+    tools:background="@color/main_bg"
+    tools:context=".screens.countryselected.CountrySelectedFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_card"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/dp_1x"
+            android:paddingEnd="@dimen/dp_2x">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/icon_arrow_left"
+                android:src="@drawable/ic_arrow_left" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp_1x"
+                android:orientation="vertical">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutCityFrom"
+                    style="@style/TextInputLayoutCountrySelected"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:endIconDrawable="@drawable/ic_swap"
+                    app:endIconMode="custom"
+                    app:endIconTint="@color/white">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textInputEditTextCityFrom"
+                        style="@style/TextEditStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textCapWords"
+                        android:maxLines="1"
+                        tools:text="@string/minsk" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey_line" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputLayoutCityTo"
+                    style="@style/TextInputLayoutCountrySelected"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:endIconDrawable="@drawable/ic_close"
+                    app:endIconMode="clear_text"
+                    app:endIconTint="@color/white">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/textInputEditTextCityTo"
+                        style="@style/TextEditStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        tools:text="@string/sochi" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <include
+            android:id="@+id/inChips"
+            layout="@layout/block_choice_country_chips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp" />
+
+        <include
+            android:id="@+id/inTickets"
+            layout="@layout/block_recommendation_tickets"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonShowAllTickets"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp"
+            android:backgroundTint="@color/blue"
+            android:text="@string/show_all_tickets"
+            android:textAppearance="@style/ButtonTickets"
+            android:textColor="@color/white"
+            app:cornerRadius="8dp" />
+
+        <include
+            android:id="@+id/inSubscribePrice"
+            layout="@layout/block_subscribe_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="23dp" />
+    </LinearLayout>
+
+</ScrollView>

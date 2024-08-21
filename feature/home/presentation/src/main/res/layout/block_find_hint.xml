@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/_10dp"
+    >
+
+    <com.github.gunin_igor75.presentation.view.CardChoiceView
+        android:id="@+id/cardChoiceViewHardRoute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:iconCardChoice="@drawable/im_hard_destination"
+        app:layout_constraintEnd_toStartOf="@id/cardChoiceViewAnyWhere"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:textCardChoice="@string/hard_route" />
+
+    <com.github.gunin_igor75.presentation.view.CardChoiceView
+        android:id="@+id/cardChoiceViewAnyWhere"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:iconCardChoice="@drawable/im_anywhere"
+        app:layout_constraintEnd_toStartOf="@id/cardChoiceViewWeekend"
+        app:layout_constraintStart_toEndOf="@id/cardChoiceViewHardRoute"
+        app:layout_constraintTop_toTopOf="parent"
+        app:textCardChoice="@string/any_where" />
+
+    <com.github.gunin_igor75.presentation.view.CardChoiceView
+        android:id="@+id/cardChoiceViewWeekend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:iconCardChoice="@drawable/im_weekend"
+        app:layout_constraintEnd_toStartOf="@id/cardChoiceViewHotTickets"
+        app:layout_constraintStart_toEndOf="@id/cardChoiceViewAnyWhere"
+        app:layout_constraintTop_toTopOf="parent"
+        app:textCardChoice="@string/Weekend" />
+
+    <com.github.gunin_igor75.presentation.view.CardChoiceView
+        android:id="@+id/cardChoiceViewHotTickets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:iconCardChoice="@drawable/im_hot_tickets"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cardChoiceViewWeekend"
+        app:layout_constraintTop_toTopOf="parent"
+        app:textCardChoice="@string/hot_tickets" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

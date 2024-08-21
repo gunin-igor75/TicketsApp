@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:id="@+id/frameLayoutBadge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_ticket_badge"
+        android:paddingHorizontal="@dimen/_10dp"
+        android:paddingVertical="@dimen/_2dp"
+        android:translationZ="@dimen/_1dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/clTicket"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/clTicket">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewBadge"
+            style="@style/sfProDisplayMedium.14sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            tools:text="@string/arrival_badge" />
+
+    </FrameLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clTicket"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_2x"
+        android:background="@drawable/rounded_ticket"
+        android:padding="@dimen/dp_2x"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewPriceTicket"
+            style="@style/sfProDisplayBold.22sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/price_ticket" />
+
+        <ImageView
+            android:id="@+id/imageViewCircle"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="23dp"
+            android:contentDescription="@string/image_circle"
+            android:src="@drawable/circle_red"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPriceTicket" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewBeginFlight"
+            style="@style/sfProDisplayMedium.14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toTopOf="@id/imageViewCircle"
+            app:layout_constraintStart_toEndOf="@+id/imageViewCircle"
+            app:layout_constraintTop_toTopOf="@id/imageViewCircle"
+            tools:text="12:00" />
+
+        <View
+            android:id="@+id/ivDash"
+            android:layout_width="10dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="2dp"
+            android:background="@color/gray_4"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewBeginFlight"
+            app:layout_constraintStart_toEndOf="@+id/textViewBeginFlight"
+            app:layout_constraintTop_toTopOf="@+id/textViewBeginFlight" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewEndFlight"
+            style="@style/sfProDisplayMedium.14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/ivDash"
+            app:layout_constraintStart_toEndOf="@+id/ivDash"
+            app:layout_constraintTop_toTopOf="@+id/ivDash"
+            tools:text="15:35" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewTotalFlight"
+            style="@style/sfProDisplayMedium.14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="13dp"
+            android:text="@string/total_flight"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewEndFlight"
+            app:layout_constraintStart_toEndOf="@+id/textViewEndFlight"
+            app:layout_constraintTop_toTopOf="@+id/textViewEndFlight"
+            tools:text="3.5ч в пути" />
+
+        <LinearLayout
+            android:id="@+id/llNoTransfer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@id/textViewTotalFlight"
+            app:layout_constraintStart_toEndOf="@id/textViewTotalFlight"
+            app:layout_constraintTop_toTopOf="@id/textViewTotalFlight">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/sfProDisplayMedium.14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@string/dash"
+                android:textColor="@color/gray_4" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/sfProDisplayMedium.14sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@string/no_transfers" />
+
+        </LinearLayout>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewAirDeparture"
+            style="@style/sfProDisplayMedium.14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/gray_4"
+            app:layout_constraintBottom_toBottomOf="@id/imageViewCircle"
+            app:layout_constraintStart_toEndOf="@+id/imageViewCircle"
+            app:layout_constraintTop_toBottomOf="@id/imageViewCircle"
+            tools:text="DME" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewAirArrival"
+            style="@style/sfProDisplayMedium.14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:textColor="@color/gray_4"
+            app:layout_constraintStart_toEndOf="@id/textViewAirDeparture"
+            app:layout_constraintTop_toBottomOf="@id/textViewAirDeparture"
+            app:layout_constraintTop_toTopOf="@id/textViewAirDeparture"
+            tools:text="AER" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

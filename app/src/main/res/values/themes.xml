@@ -3,7 +3,18 @@
     <style name="Base.Theme.TicketsApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:statusBarColor">@color/main_bg</item>
+        <item name="android:windowLightStatusBar">false</item>
+<!--        <item name="colorSurface">@color/card_grey</item>-->
+
+        <item name="colorPrimary">@color/basic_blue</item>
+        <item name="colorOnSurface">@color/grey</item>
+
     </style>
 
-    <style name="Theme.TicketsApp" parent="Base.Theme.TicketsApp" />
+    <style name="Theme.TicketsApp" parent="Base.Theme.TicketsApp">
+        <item name="android:windowBackground">@color/main_bg</item>
+        <item name="cardChoiceStyle">@style/DefaultCardChoiceViewStyle</item>
+    </style>
+
 </resources>

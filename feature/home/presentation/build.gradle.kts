@@ -1,10 +1,12 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.safeags)
+    alias(libs.plugins.parcelize)
 }
 
 android {
-    namespace = "com.feature.home.presentation"
+    namespace = "com.github.gunin_igor75.presentation"
     compileSdk = 34
 
     defaultConfig {
@@ -30,6 +32,10 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -37,9 +43,28 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(libs.viewbinding.delegate.kirich)
 
-    //domain module
+    //module
     implementation(project(":feature:home:domain"))
+    implementation(project(":core:common"))
+
+    //lifecycle
+    implementation(libs.androidx.lifecycle.core)
+    implementation(libs.androidx.lifecycle.viewmodel)
+
+    //navigation
+    implementation(libs.androidx.navigation.fragment.ktx)
+
+    //adapterDelegates
+    implementation(libs.adapter.delegates.core)
+    implementation(libs.adapter.delegates.viewbinding)
+
+    //koin
+    implementation(libs.koin.android)
+
+    //shimmer
+    implementation(libs.shimmer.core)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
