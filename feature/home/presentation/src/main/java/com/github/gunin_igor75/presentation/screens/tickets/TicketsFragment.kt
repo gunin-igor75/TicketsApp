@@ -6,6 +6,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.github.gunin_igor75.presentation.R
 import com.github.gunin_igor75.presentation.adapter.TicketAdapter
@@ -30,6 +31,7 @@ class TicketsFragment : Fragment(R.layout.fragment_tickets) {
         setupRecyclerView()
         observeTitleTicketViewModel()
         observeTicketsViewModel()
+        clickBack()
     }
 
     private fun setupRecyclerView() {
@@ -72,8 +74,9 @@ class TicketsFragment : Fragment(R.layout.fragment_tickets) {
         }
     }
 
-
-    private companion object {
-        const val TAG = "TicketsFragment"
+    private fun clickBack() {
+        binding.inAppBarTickets.imageView.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 }

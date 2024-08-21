@@ -14,10 +14,10 @@
         android:paddingHorizontal="@dimen/_10dp"
         android:paddingVertical="@dimen/_2dp"
         android:translationZ="@dimen/_1dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="parent"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/clTicket"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@id/clTicket">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/textViewBadge"
@@ -30,8 +30,10 @@
     </FrameLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clTicket"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_2x"
         android:background="@drawable/rounded_ticket"
         android:padding="@dimen/dp_2x"
         app:layout_constraintStart_toStartOf="parent"
