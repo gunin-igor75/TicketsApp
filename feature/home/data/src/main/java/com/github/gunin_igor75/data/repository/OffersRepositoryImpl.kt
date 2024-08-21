@@ -25,8 +25,10 @@ class OffersRepositoryImpl(
         ticketDataSource.saveTicket(titleTicketModel.toTicketDb())
     }
 
-    override fun getTicket(id: String): Flow<TitleTicketModel> = ticketDataSource.getTicket(id)
-        .map { it.toTicketModel() }
+    override fun getTicket(id: String): Flow<TitleTicketModel>{
+        return ticketDataSource.getTicket(id)
+            .map { it?.toTicketModel() ?: TitleTicketModel()}
+    }
 
     override suspend fun getOffers(): DataResult<List<Offer>> =
         wrapFetchResult {

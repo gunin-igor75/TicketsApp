@@ -95,7 +95,9 @@ fun getFormatNumber(value: Double): String {
 
 fun TitleTicketModel.toTicketDb() = TicketDb(id, cityFrom, cityTo, date)
 
-fun TicketDb.toTicketModel() = TitleTicketModel(id, cityFrom, cityTo, date)
+fun TicketDb.toTicketModel(): TitleTicketModel {
+    return TitleTicketModel(id, cityFrom, cityTo, date)
+}
 
 
 

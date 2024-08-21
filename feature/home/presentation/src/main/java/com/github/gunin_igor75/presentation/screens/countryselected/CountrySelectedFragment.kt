@@ -235,14 +235,13 @@ class CountrySelectedFragment : Fragment() {
             val isValidateFrom = vm.validateCity(cityFrom)
             val isValidateTo = vm.validateCity(cityTo)
             if (isValidateFrom && isValidateTo) {
-                currentDateMillis?.let {
+                val dateMillis = currentDateMillis ?: Date().time
                     val titleTicketModel = TitleTicketModel(
                         cityFrom = cityFrom,
                         cityTo = cityTo,
-                        date = Date(it)
+                        date = Date(dateMillis)
                     )
                     vm.saveCity(titleTicketModel)
-                }
                 launchScreenTickets()
             }
         }

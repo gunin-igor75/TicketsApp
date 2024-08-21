@@ -12,7 +12,7 @@ class TicketLocalDataSource(
         ticketApi.insert(ticketDb)
     }
 
-    fun getTicket(id: String): Flow<TicketDb> {
+    fun getTicket(id: String): Flow<TicketDb?> {
         return ticketApi.getTicket(id)
     }
 }
