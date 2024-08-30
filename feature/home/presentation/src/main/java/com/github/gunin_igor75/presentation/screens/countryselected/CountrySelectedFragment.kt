@@ -5,12 +5,13 @@ import android.text.SpannableString
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.core.common.R
+import com.core.common.utils.Constants.Companion.MESSAGE_ERROR
+import com.core.common.utils.Utils
 import com.github.gunin_igor75.domain.model.TitleTicketModel
 import com.github.gunin_igor75.presentation.adapter.CountrySelectedAdapter
 import com.github.gunin_igor75.presentation.databinding.FragmentCountrySelectedBinding
@@ -24,7 +25,6 @@ import com.google.android.material.datepicker.CompositeDateValidator
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Date
@@ -108,13 +108,10 @@ class CountrySelectedFragment : Fragment() {
         lifecycleScope.launch {
             vm.error.flowWithLifecycle(viewLifecycleOwner.lifecycle).collect { isError ->
                 if (isError) {
-                    val snackBar =
-                        Snackbar.make(binding.root, R.string.error, Snackbar.LENGTH_SHORT)
-                    snackBar.setBackgroundTint(
-                        ContextCompat.getColor(requireContext(), R.color.grey)
+                    Utils.showAlertDialog(
+                        context = requireContext(),
+                        message = MESSAGE_ERROR
                     )
-                    snackBar.setTextColor(ContextCompat.getColor(requireContext(), R.color.main_bg))
-                    snackBar.show()
                 }
             }
         }

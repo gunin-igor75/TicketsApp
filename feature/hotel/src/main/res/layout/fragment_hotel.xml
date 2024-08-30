@@ -3,13 +3,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="@color/black"
+    tools:background="@color/main_bg"
     tools:context=".HotelFragment">
 
-    <TextView
-        style="@style/sfProDisplayBold.20sp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_hotel_fragment" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <EditText
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@color/inner_grey" />
+
+        <EditText
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/rounded_card"
+            android:layout_marginStart="@dimen/dp_1x"
+            />
+
+        <EditText
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@color/inner_grey"
+            android:layout_marginStart="@dimen/dp_1x"
+            />
+
+        <EditText
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@color/inner_grey"
+            android:layout_marginStart="@dimen/dp_1x"
+            />
+
+    </LinearLayout>
+
+
 
 </FrameLayout>
