@@ -23,7 +23,7 @@ import kotlinx.coroutines.launch
 
 class TicketsViewModel(
     private val getTickets: GetTickets,
-    private val getTicket: GetTicket,
+    getTicket: GetTicket,
 ) : ViewModel() {
 
     val titleTicketState: Flow<UiTitleTicket> = getTicket(TICKET_ID).map { it.toUiTitleTicket() }

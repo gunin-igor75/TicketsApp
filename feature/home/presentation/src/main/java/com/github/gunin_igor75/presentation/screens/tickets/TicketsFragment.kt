@@ -8,6 +8,9 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.core.common.utils.Constants
+import com.core.common.utils.Constants.Companion.MESSAGE_ERROR
+import com.core.common.utils.Utils
 import com.github.gunin_igor75.presentation.R
 import com.github.gunin_igor75.presentation.adapter.TicketAdapter
 import com.github.gunin_igor75.presentation.databinding.FragmentTicketsBinding
@@ -31,7 +34,21 @@ class TicketsFragment : Fragment(R.layout.fragment_tickets) {
         setupRecyclerView()
         observeTitleTicketViewModel()
         observeTicketsViewModel()
+        observeError()
         clickBack()
+    }
+
+    private fun observeError() {
+        lifecycleScope.launch {
+            vm.error.flowWithLifecycle(viewLifecycleOwner.lifecycle).collect{ isError ->
+                if (isError) {
+                    Utils.showAlertDialog(
+                        context = requireContext(),
+                        message = MESSAGE_ERROR
+                    )
+                }
+            }
+        }
     }
 
     private fun setupRecyclerView() {
